@@ -4,10 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Form114.Infrastructure
 {
-    public class EditorForHelper
+    public static class EditorForHelper
     {
         public static MvcHtmlString TextBox<TModel, TProperty>(this HtmlHelper<TModel> self, Expression<Func<TModel, TProperty>> expression, int size)
         {

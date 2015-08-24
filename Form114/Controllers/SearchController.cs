@@ -14,5 +14,10 @@ namespace Form114.Controllers
         {
             return View(new SearchViewModel());
         }
+
+        public ActionResult Result()
+        {
+            return View();
+        }
     }
 }
