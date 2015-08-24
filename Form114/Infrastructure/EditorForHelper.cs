@@ -50,5 +50,19 @@ namespace Form114.Infrastructure
         {
             return new FormFieldset(self, legend);
         }
+
+        //public static MvcHtmlString Legend(this HtmlHelper<TModel> self,string )
+        //{
+
+        //}
+
+        public static MvcHtmlString Slider(this HtmlHelper self)
+        {
+            string a = "";
+            a += "<p>";
+            a += "<label for=\"amount\">Prix:</label>";
+            a += "<input type=\"text\" id=\"amount\" readonly style=\"border:0; color:#f6931f; font-weight:bold; width:300px \">";
+            return new MvcHtmlString(a);
+        }
     }
 }

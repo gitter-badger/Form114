@@ -14,8 +14,8 @@
         $( "#slider-range" ).slider({
             range: true,
             min: 0,
-            max: (function () { return $("#idPrixMax").val(); })(),
-            values: [ 75, 100000 ],
+            max: 10000,
+            values: [ 50, 10000 ],
             slide: function( event, ui ) {
                 $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
                 $("#prixmini").val(ui.values[0]);
