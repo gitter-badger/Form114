@@ -12,11 +12,12 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Produit
+    public partial class Produits
     {
-        public Produit()
+        public Produits()
         {
-            this.Photo = new HashSet<Photo>();
+            this.Photos = new HashSet<Photos>();
+            this.Prix = new HashSet<Prix>();
         }
     
         public int IdProduit { get; set; }
@@ -25,7 +26,8 @@ namespace DataLayer.Models
         public string Adresse { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<Photo> Photo { get; set; }
-        public virtual Ville Ville { get; set; }
+        public virtual ICollection<Photos> Photos { get; set; }
+        public virtual ICollection<Prix> Prix { get; set; }
+        public virtual Villes Villes { get; set; }
     }
 }

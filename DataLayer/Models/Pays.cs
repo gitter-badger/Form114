@@ -16,12 +16,24 @@ namespace DataLayer.Models
     {
         public Pays()
         {
-            this.Region = new HashSet<Region>();
+            this.Villes = new HashSet<Villes>();
         }
     
-        public int IdPays { get; set; }
-        public string Libelle { get; set; }
+        public string CodeIso3 { get; set; }
+        public string Name { get; set; }
+        public double surfacearea { get; set; }
+        public Nullable<short> indepyear { get; set; }
+        public int population { get; set; }
+        public Nullable<double> lifeexpectancy { get; set; }
+        public Nullable<double> gnp { get; set; }
+        public Nullable<double> gnpold { get; set; }
+        public string localName { get; set; }
+        public string CodeIso2 { get; set; }
+        public int idRegion { get; set; }
+        public int idgovform { get; set; }
+        public Nullable<int> idheadofstate { get; set; }
     
-        public virtual ICollection<Region> Region { get; set; }
+        public virtual Regions Regions { get; set; }
+        public virtual ICollection<Villes> Villes { get; set; }
     }
 }

@@ -25,11 +25,12 @@ namespace DataLayer.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Continents> Continents { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
-        public virtual DbSet<Photo> Photo { get; set; }
+        public virtual DbSet<Photos> Photos { get; set; }
         public virtual DbSet<Prix> Prix { get; set; }
-        public virtual DbSet<Produit> Produit { get; set; }
-        public virtual DbSet<Region> Region { get; set; }
-        public virtual DbSet<Ville> Ville { get; set; }
+        public virtual DbSet<Produits> Produits { get; set; }
+        public virtual DbSet<Regions> Regions { get; set; }
+        public virtual DbSet<Villes> Villes { get; set; }
     }
 }

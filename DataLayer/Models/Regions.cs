@@ -12,12 +12,18 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class Regions
     {
-        public int IdPhoto { get; set; }
-        public Nullable<int> IdProduit { get; set; }
-        public string Path { get; set; }
+        public Regions()
+        {
+            this.Pays = new HashSet<Pays>();
+        }
     
-        public virtual Produit Produit { get; set; }
+        public int idRegion { get; set; }
+        public string name { get; set; }
+        public int idContinent { get; set; }
+    
+        public virtual Continents Continents { get; set; }
+        public virtual ICollection<Pays> Pays { get; set; }
     }
 }

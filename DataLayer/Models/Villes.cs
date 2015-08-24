@@ -12,18 +12,21 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ville
+    public partial class Villes
     {
-        public Ville()
+        public Villes()
         {
-            this.Produit = new HashSet<Produit>();
+            this.Produits = new HashSet<Produits>();
         }
     
-        public int IdVille { get; set; }
-        public Nullable<int> IdRegion { get; set; }
-        public string Libelle { get; set; }
+        public int idVille { get; set; }
+        public string name { get; set; }
+        public string CodeIso3 { get; set; }
+        public string district { get; set; }
+        public int population { get; set; }
+        public short isCapital { get; set; }
     
-        public virtual ICollection<Produit> Produit { get; set; }
-        public virtual Region Region { get; set; }
+        public virtual Pays Pays { get; set; }
+        public virtual ICollection<Produits> Produits { get; set; }
     }
 }
