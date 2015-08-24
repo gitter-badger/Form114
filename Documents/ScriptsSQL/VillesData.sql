@@ -1,3 +1,4 @@
+use Form114
 CREATE TABLE Continents (
     idContinent integer NOT NULL,
     name character varying(20)
