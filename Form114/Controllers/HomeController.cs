@@ -22,13 +22,13 @@ namespace Form114.Controllers {
 
             return View();
         }
-        //[ChildActionOnly]
-        //public PartialViewResult Comptage()
-        //{
-        //    Form114Entities DbConnection = new Form114Entities();
-        //    int comptageProduits = DbConnection.Produits.Count();
+        [ChildActionOnly]
+        public PartialViewResult Comptage()
+        {
+            Form114Entities DbConnection = new Form114Entities();
+            int comptageProduits = DbConnection.Produits.Select(x => x.IdProduit).Count();
 
-        //    return PartialView("_Comptage", comptageProduits);
-        //}
+            return PartialView("_Comptage", comptageProduits);
+        }
     }
 }

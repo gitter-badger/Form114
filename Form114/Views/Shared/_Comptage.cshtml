@@ -1,4 +1,4 @@
-﻿@model List<Tuple<string, int>>
+﻿@model int
 
 <div class="panel panel-danger">
     <div class="panel-heading">
@@ -6,13 +6,7 @@
     </div>
     <div class="panel-body">
         <ul>
-            @foreach (var m in @Model)
-            {
-                <li class="list-group-item">
-                    <span class="badge">@m.Item2</span>
-                    @m.Item1
-                </li>
-            }
+            @Model
         </ul>
     </div>
 </div>
