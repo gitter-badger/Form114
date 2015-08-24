@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,5 +22,13 @@ namespace Form114.Controllers {
 
             return View();
         }
+        //[ChildActionOnly]
+        //public PartialViewResult Comptage()
+        //{
+        //    Form114Entities DbConnection = new Form114Entities();
+        //    int comptageProduits = DbConnection.Produits.Count();
+
+        //    return PartialView("_Comptage", comptageProduits);
+        //}
     }
 }

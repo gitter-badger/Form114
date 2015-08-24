@@ -32,6 +32,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <div class="col-lg-2">
+            @Html.Action("Comptage", "Home")
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
