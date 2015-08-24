@@ -49,15 +49,63 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\Form114.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form114.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form114.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form114.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form114.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pays.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Photo.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prix.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produit.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ville.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Models\Form114.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Form114.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Form114.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Form114.edmx</DependentUpon>
+      <LastGenOutput>Form114.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Form114.edmx.diagram">
+      <DependentUpon>Form114.edmx</DependentUpon>
+    </None>
+    <None Include="Models\Form114.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Form114.edmx</DependentUpon>
+      <LastGenOutput>Form114.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
