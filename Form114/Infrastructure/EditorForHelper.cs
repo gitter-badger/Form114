@@ -56,12 +56,18 @@ namespace Form114.Infrastructure
 
         //}
 
-        public static MvcHtmlString Slider(this HtmlHelper self)
+        public static MvcHtmlString Slider(this HtmlHelper self, string slider)
         {
             string a = "";
             a += "<p>";
             a += "<label for=\"amount\">Prix:</label>";
             a += "<input type=\"text\" id=\"amount\" readonly style=\"border:0; color:#f6931f; font-weight:bold; width:300px \">";
+            a += "</p>";
+            a += "<div id=" + slider + " class=\"col-lg-4\"></div>";
+            a += "<input type=\"hidden\" id=\"prixmini\" name=\"PrixMini\" value=\"prixmini\" />";
+            a += "<input type=\"hidden\" id=\"prixmaxi\" name=\"PrixMaxi\" value=\"prixmaxi\" />";
+            a += "</br>";
+            a += "<input type=\"submit\" value=\"Rechercher\" />";
             return new MvcHtmlString(a);
         }
     }

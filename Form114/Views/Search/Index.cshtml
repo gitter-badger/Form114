@@ -5,42 +5,43 @@
 }
 
 @section scripts{
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
-    <script src="~/Scripts/Search/Index.js"></script>
     <script>
-    $(function() {
-        $( "#slider-range" ).slider({
-            range: true,
-            min: 0,
-            max: 10000,
-            values: [ 50, 10000 ],
-            slide: function( event, ui ) {
-                $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
-                $("#prixmini").val(ui.values[0]);
-                $("#prixmaxi").val(ui.values[1]);
-            }
+        $(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 1000,
+                values: [100, 1000],
+                slide: function (event, ui) {
+                    $("#amount").val("€" + ui.values[0] + " - €" + ui.values[1]);
+                    $("#prixmini").val(ui.values[0]);
+                    $("#prixmaxi").val(ui.values[1]);
+                }
+            });
+            $("#prixmini").val($("#slider-range").slider("values", 0));
+            $("#prixmaxi").val($("#slider-range").slider("values", 1));
+            //$("#amount").val("€" + $("#prixmini") +
+            //  " - €" + $("#prixmaxi"));
+            $("#amount").val("€" + $("#slider-range").slider("values", 0) +
+          " - €" + $("#slider-range").slider("values", 1));
         });
-        //$("#slider-range").slider("option", "max", $("#idPrixMax").val());
-        //$( "#amount" ).val( "€" + $( "#slider-range" ).slider( "values", 0 ) +
-        //  " - €" + $("#slider-range").slider("values", 1));
-
-        $("#prixmini").val($("#slider-range").slider("values", 0));
-        $("#prixmaxi").val($("#slider-range").slider("values", 1));
-        $("#amount").val("€" + $("#prixmini") +
-          " - €" + $("#prixmaxi"));
-    });
     </script>
-    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
 }
 <h2>Search</h2>
 
-@using (Html.BeginForm("Index", "Search", FormMethod.Post, new{@class = "form-horizontal"})){
+
+@using (Html.BeginForm("Index", "Search")){
     using (@Html.FieldsetHelper("Prix du Logement"))
     {
-        @Html.TextBox(Model => Model.PrixMaxi,2)
+        @Html.Slider("slider-range")
     }
 
 }
+<div class="col-lg-4"></div>
+
+
