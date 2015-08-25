@@ -17,6 +17,8 @@ if object_id('Utilisateurs') is not null
 	drop table Utilisateurs
 if object_id('Identites') is not null
 	drop table Identites
+if object_id('Adresses') is not null
+	drop table Adresses
 GO
 
 CREATE TABLE Produits
@@ -125,6 +127,42 @@ CREATE TABLE [dbo].[Vendeurs](
 	[IdVendeur] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Adresses]    Script Date: 10/08/2015 06:52:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Adresses](
+	[IdAdresse] [int] IDENTITY(1,1) NOT NULL,
+	[Ligne1] [varchar](36) NOT NULL,
+	[Ligne2] [varchar](36) NULL,	
+	[CodePostal] [char](5) NOT NULL,
+	[Ville] [varchar](36) NULL,
+ CONSTRAINT [Pk_Adresse] PRIMARY KEY CLUSTERED 
+(
+	[IdAdresse] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Index [Idx_Adresse_0]    Script Date: 10/08/2015 06:52:24 ******/
+ALTER TABLE [dbo].[Adresses] ADD  CONSTRAINT [Idx_Adresse_0] UNIQUE NONCLUSTERED 
+(
+	[Ligne1] ASC,
+	[Ligne2] ASC,	
+	[CodePostal] ASC,
+	[Ville] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[Utilisateurs]  WITH CHECK ADD  CONSTRAINT [fk_utilisateurs_adresse] FOREIGN KEY([IdAdresse])
+REFERENCES [dbo].[Adresses] ([IdAdresse])
+GO
+ALTER TABLE [dbo].[Utilisateurs] CHECK CONSTRAINT [fk_utilisateurs_adresse]
 
 ALTER TABLE [dbo].[Acheteurs]  WITH CHECK ADD  CONSTRAINT [Fk_Acheteurs_Utilisateurs] FOREIGN KEY([IdAcheteur])
 REFERENCES [dbo].[Utilisateurs] ([IdUtilisateur])
