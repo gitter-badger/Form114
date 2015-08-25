@@ -31,9 +31,17 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <div class="col-lg-2">
-            @Html.Action("Comptage", "Home")
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-8">
+
+
+                @RenderBody()
+            </div>
+            <div class="col-lg-2">
+                @Html.Action("Comptage", "Home")
+            </div>
         </div>
         <hr />
         <footer>
