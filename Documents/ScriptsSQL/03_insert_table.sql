@@ -104,7 +104,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Utilisateurs](
-	[IdUtilisateur] [int] IDENTITY(1,1) NOT NULL,
+	[IdUtilisateur] [int] NOT NULL,
 	[IdAdresse] [int] NOT NULL,
 	[DateInscription] [datetime2](7) NOT NULL,
 	[LastConnection] [datetime2](7) NULL,
@@ -195,3 +195,13 @@ VALUES
 (1, GETDATE(), DATEADD(DAY, 20, GETDATE()), 160),
 (2, GETDATE(), DATEADD(DAY, 20, GETDATE()), 60),
 (1, DATEADD(MONTH, 6, GETDATE()), DATEADD(MONTH, 7, GETDATE()), 60)
+
+
+SET IDENTITY_INSERT [dbo].[Identites] ON 
+
+INSERT [dbo].[Identites] ([IdIdentite], [Nom], [Prenom], [Identifiant], [Password], [Email]) VALUES (1, N'Durant', N'Pedro', N'Lamule    ', N'password  ', N'email')
+SET IDENTITY_INSERT [dbo].[Identites] OFF
+SET IDENTITY_INSERT [dbo].[Adresses] ON 
+
+INSERT [dbo].[Adresses] ([IdAdresse], [Ligne1], [Ligne2], [CodePostal], [Ville]) VALUES (1, N'2 rue tralala', NULL, N'75012', N'Paris')
+SET IDENTITY_INSERT [dbo].[Adresses] OFF
