@@ -1,11 +1,14 @@
 ﻿@model List<DataLayer.Models.Produits>
+@using Form114.Infrastructure
 @{
     ViewBag.Title = "Result";
 }
 
 <h2>Result</h2>
 
+<div class="row">
 @foreach (var item in @Model)
 {
-    <p>@item.IdProduit</p>
+    <div class="col-sm-4">@Html.MyCarousel(item.Photos.Select(p => p.Path).ToList(), item.IdProduit.ToString())</div>
 }
+</div>
