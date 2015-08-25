@@ -25,11 +25,11 @@ namespace Form114.Controllers {
         [ChildActionOnly]
         public PartialViewResult Comptage()
         {
-            // TODO faire le comptage des inscrits, creer la table "clients"
+            // TODO faire le comptage des Acheteurs, creer la table "Identities"
 
             Form114Entities DbConnection = new Form114Entities();
             int comptageProduits = DbConnection.Produits.Select(x => x.IdProduit).Count();
-            //int comptageInscrits = DbConnection.
+            //int comptageAcheteurs = DbConnection.
 
             return PartialView("_Comptage", comptageProduits);
         }
