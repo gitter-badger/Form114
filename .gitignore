@@ -19,9 +19,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-# EDMX directory
-Models/
-
 # Roslyn cache directories
 *.ide/
 
