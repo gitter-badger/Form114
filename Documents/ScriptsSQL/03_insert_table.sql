@@ -24,7 +24,7 @@ GO
 CREATE TABLE Produits
 (
 	IdProduit int identity PRIMARY KEY,
-	IdVille int references Villes,
+	IdVille int references Villes not null,
 	NbPlaces int,
 	Adresse varchar(100),
 	Description varchar(100)
