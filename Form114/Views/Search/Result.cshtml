@@ -1,0 +1,11 @@
+﻿@model List<DataLayer.Models.Produits>
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Result</h2>
+
+@foreach (var item in @Model)
+{
+    <p>@item.IdProduit</p>
+}

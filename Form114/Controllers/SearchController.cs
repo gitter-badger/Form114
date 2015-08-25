@@ -1,4 +1,5 @@
-﻿using Form114.Models;
+﻿using DataLayer.Models;
+using Form114.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,11 @@ namespace Form114.Controllers
             return View(new SearchViewModel());
         }
 
-        public ActionResult Result()
+        public ActionResult Result(SearchViewModel svm)
         {
-            return View();
+            var db = new Form114Entities();
+            var liste = db.Produits;
+            return View(liste.ToList());
         }
     }
 }
