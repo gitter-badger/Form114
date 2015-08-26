@@ -9,8 +9,11 @@
 <script src="~/Scripts/jquery-ui.js"></script>
     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
     <script src="~/Scripts/Search/Slider.js"></script>
+<script src="~/Scripts/Search/ListeVille.js"></script>
+<script src="~/Scripts/Search/Datepicker.js"></script>
 
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
 }
 <h2>Search</h2>
 
@@ -19,6 +22,13 @@
     using (@Html.FieldsetHelper("Prix du Logement"))
     {
         @Html.Slider("slider-range")
+    
+        @Html.ListeVille()
+    
+        @Html.NombreDePlace()
+        
+        @Html.DatePicker()
+    
     }
 
 }

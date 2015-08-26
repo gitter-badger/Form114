@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -67,8 +68,50 @@ namespace Form114.Infrastructure
             a += "<input type=\"hidden\" id=\"prixmini\" name=\"PrixMini\" value=\"prixmini\" />";
             a += "<input type=\"hidden\" id=\"prixmaxi\" name=\"PrixMaxi\" value=\"prixmaxi\" />";
             a += "</br>";
-            a += "<input type=\"submit\" value=\"Rechercher\" />";
             return new MvcHtmlString(a);
         }
+
+        public static MvcHtmlString ListeVille(this HtmlHelper helper)
+        {
+            string str = "";
+            str += "</br>";
+            str += "<fieldset>";
+            str += "<legend>Choississez la Ville</legend>";
+            str += "<div class=\"container\">";
+            str += "<div class=\"col-lg-6\">";
+            str += "<select id=\"Ville\" name=\"Ville\" class=\"chosen-select form-control\" multiple></select>";
+            str += "</div>";
+            str += "</div>";
+            str += "</fieldset>";
+            str += "</br>";
+            
+            return new MvcHtmlString(str);
+        }
+
+        public static MvcHtmlString NombreDePlace(this HtmlHelper helper)
+        {
+            var str = "";
+            str += "<legend>Nombre de Chambre</legend>";
+            str += "<select name=\"nbPlaces\">";
+            for (int i = 0; i < 10; i++)
+            {
+                str += "<option value="+(i+1)+">"+(i+1)+"</option>";
+            }
+            str += "</select>";
+            str += "</br>";
+            str += "</br>";
+            return new MvcHtmlString(str);
+        }
+
+        public static MvcHtmlString DatePicker(this HtmlHelper helper)
+        {
+            var str = "";
+            str += "<legend>Date de Début et de Fin</legend>";
+            str += "<input type=\"text\" id=\"datepicker\" name=\"DateDebut\" placeholder=\"Début\"/>";
+            str += "<input type=\"text\" id=\"datepicker1\" name=\"DateFin\" placeholder=\"Fin\"/>";
+            str += "<input type=\"submit\" value=\"Rechercher\" />";
+            return new MvcHtmlString(str);
+        }
+
     }
 }
