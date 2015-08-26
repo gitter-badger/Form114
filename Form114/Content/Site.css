@@ -46,15 +46,12 @@ textarea {
 
 div.img {
     height: 400px;
-    width: 10%;
-    float: left;
     text-align: center;
 }	
 
 div.img img {
     display: inline;
     height: inherit;
-    width: inherit;
     margin: 0px;
     border: 1px solid #ffffff;
 }

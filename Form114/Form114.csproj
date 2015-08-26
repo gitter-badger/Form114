@@ -241,6 +241,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Search\Datepicker.js" />
+    <Content Include="Scripts\Search\ListeVille.js" />
     <Content Include="Scripts\Search\Slider.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -281,10 +283,10 @@
     <Content Include="Views\Shared\_Comptage.cshtml" />
     <Content Include="Views\Search\Result.cshtml" />
     <Content Include="Views\Shared\_ProduitMini.cshtml" />
+    <Content Include="Views\Produit\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Produit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

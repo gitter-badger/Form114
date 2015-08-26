@@ -103,13 +103,14 @@ namespace Form114.Infrastructure
             return new MvcHtmlString(str);
         }
 
-        public static MvcHtmlString DatePicker(this HtmlHelper helper)
+        // Inclure Jquery et DatePicker.js
+        public static MvcHtmlString DatePicker(this HtmlHelper helper, string texteBouton)
         {
             var str = "";
             str += "<legend>Date de Début et de Fin</legend>";
             str += "<input type=\"text\" id=\"datepicker\" name=\"DateDebut\" placeholder=\"Début\"/>";
             str += "<input type=\"text\" id=\"datepicker1\" name=\"DateFin\" placeholder=\"Fin\"/>";
-            str += "<input type=\"submit\" value=\"Rechercher\" />";
+            str += "<input type=\"submit\" value=\"" + texteBouton + "\" />";
             return new MvcHtmlString(str);
         }
 

@@ -7,9 +7,10 @@
         s += 's';
     }
 }
-    <ul>
-        @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
-        <li>ID : @Model.IdProduit</li>
-        <li>@Model.NbPlaces @s</li>
-        <li>@Model.Adresse</li>
-    </ul>
+<div class="img">
+    @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
+    <p>ID : @Model.IdProduit</p>
+    <p>@Model.NbPlaces @s</p>
+    <p>@Model.Adresse</p>
+    <p>@Html.ActionLink("Détails", "Details", new { controller = "Produit", id = Model.IdProduit })</p>
+</div>

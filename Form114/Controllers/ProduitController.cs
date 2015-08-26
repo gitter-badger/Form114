@@ -37,5 +37,11 @@ namespace Form114.Controllers
             };
             return PartialView("_ProduitMini", pr);
         }
+
+        public ActionResult Details(int id)
+        {
+            var produit = _db.Produits.Find(id);
+            return View(produit);
+        }
     }
 }
