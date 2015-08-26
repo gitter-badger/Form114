@@ -28,6 +28,10 @@ namespace DataLayer.Models
         public virtual DbSet<Acheteurs> Acheteurs { get; set; }
         public virtual DbSet<Administrateurs> Administrateurs { get; set; }
         public virtual DbSet<Adresses> Adresses { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Continents> Continents { get; set; }
         public virtual DbSet<Identites> Identites { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
@@ -38,10 +42,5 @@ namespace DataLayer.Models
         public virtual DbSet<Utilisateurs> Utilisateurs { get; set; }
         public virtual DbSet<Vendeurs> Vendeurs { get; set; }
         public virtual DbSet<Villes> Villes { get; set; }
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

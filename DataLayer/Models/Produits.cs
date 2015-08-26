@@ -21,7 +21,7 @@ namespace DataLayer.Models
         }
     
         public int IdProduit { get; set; }
-        public Nullable<int> IdVille { get; set; }
+        public int IdVille { get; set; }
         public Nullable<int> NbPlaces { get; set; }
         public string Adresse { get; set; }
         public string Description { get; set; }

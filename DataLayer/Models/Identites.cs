@@ -20,8 +20,10 @@ namespace DataLayer.Models
         public string Identifiant { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public string IdUser { get; set; }
     
         public virtual Administrateurs Administrateurs { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual Utilisateurs Utilisateurs { get; set; }
     }
 }
