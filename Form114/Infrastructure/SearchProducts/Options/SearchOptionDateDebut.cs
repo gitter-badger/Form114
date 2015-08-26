@@ -33,14 +33,14 @@ namespace Form114.Infrastructure.SearchProducts.Options
                     {
                         foreach (var item1 in list)
                         {
-                            if(!(listeDeProduitsDateDebut.Contains(item1)))
+                            //if(!(listeDeProduitsDateDebut.Contains(item1)))
                                 listeDeProduitsDateDebut.Add(item1);
                         }
                     }
                     else
                     {
                         var list1 = list.FirstOrDefault();
-                        if (list1 != null && !(listeDeProduitsDateDebut.Contains(list1)))
+                        if (list1 != null /*&& !(listeDeProduitsDateDebut.Contains(list1))*/)
                         {
                             listeDeProduitsDateDebut.Add(list1);
                         }
