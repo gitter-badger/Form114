@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Infrastructure\EditorForHelper.cs" />
     <Compile Include="Infrastructure\FormFieldset.cs" />
+    <Compile Include="Infrastructure\MyCarouselHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -210,6 +211,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\photo11.jpg" />
+    <Content Include="Images\photo12.jpg" />
+    <Content Include="Images\photo21.jpg" />
+    <Content Include="Images\photo22.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />

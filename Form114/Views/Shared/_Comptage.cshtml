@@ -1,4 +1,4 @@
-﻿@model int
+﻿@model int[]
 
 <div class="panel panel-info">
     <div class="panel-heading">
@@ -6,7 +6,8 @@
     </div>
     <div class="panel-body">
         <ul>
-            <li class="comptage"> @Model Chambres à louer!</li>
+            <li class="comptage"> @Model[0] Chambres à louer!</li>
+            <li class="comptage"> @Model[1] Utilisateurs inscrits!!</li>
         </ul>
     </div>
 </div>

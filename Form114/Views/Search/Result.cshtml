@@ -1,10 +1,12 @@
 ﻿@model List<DataLayer.Models.Produits>
+@using Form114.Infrastructure
 @{
     ViewBag.Title = "Result";
 }
 
 <h2>Result</h2>
 
+<div class="row">
 @foreach (var item in @Model)
 {
     <p>@item.IdProduit</p>
@@ -14,3 +16,4 @@
 { 
     @ViewBag.listeChoisi[i]
 }*@
+</div>

@@ -24,3 +24,16 @@ textarea {
 }
 
 .comptage  {text-align: justify}
+
+.carousel-height
+{
+    height: 200px;
+}
+
+.image-carousel
+{
+    height: 10%;
+    width: auto;
+    align-self: center;
+    margin: 0px auto;
+}
