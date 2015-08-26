@@ -31,18 +31,23 @@ namespace Form114.Infrastructure.SearchProducts.Options
             {
                 var list = SearchBase.GetResult().Where(p => p.IdProduit == item.IdProduit);
 
-                if (list.Count() > 1)
-                {
-                    foreach (var item1 in list)
+                    if (list.Count() > 1)
                     {
-                        listeDeProduitsPrixMini.Add(item1);
+                        foreach (var item1 in list)
+                        {
+                            if(!(listeDeProduitsPrixMini.Contains(item1)))
+                                listeDeProduitsPrixMini.Add(item1);
+                        }
                     }
-                }
-                else
-                {
-                    var list1 = list.FirstOrDefault();
-                    listeDeProduitsPrixMini.Add(list1);
-                }
+                    else
+                    {
+                        var list1 = list.FirstOrDefault();
+                        if (list1 != null && !(listeDeProduitsPrixMini.Contains(list1)))
+                        {
+                            listeDeProduitsPrixMini.Add(list1);
+                        }
+                    }
+                
             }
             // TODO : refaire après la mise a jour base de données sur la table Produits, prix ne pas être null
 

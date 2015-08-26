@@ -29,10 +29,13 @@ namespace Form114.Controllers
             //var liste = db.Produits;
             SearchBase sb = new Search();
             sb = new SearchOptionVille(sb, svm.Ville);
-            sb = new SearchOptionNombrePlaces(sb, svm.nbPlaces);
-            sb = new SearchOptionPrixMini(sb, svm.PrixMini);
-            sb = new SearchOptionDateDebut(sb, svm.DateDebut);
             var result = sb.GetResult();
+            sb = new SearchOptionNombrePlaces(sb, svm.nbPlaces);
+            result = sb.GetResult();
+            sb = new SearchOptionPrixMini(sb, svm.PrixMini);
+            result = sb.GetResult();
+            sb = new SearchOptionDateDebut(sb, svm.DateDebut);
+            result = sb.GetResult();
             return View(result);
         }
 

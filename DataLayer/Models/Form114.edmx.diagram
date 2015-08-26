@@ -29,6 +29,14 @@
         <AssociationConnector Association="Form114Model.FK__Prix__IdProduit__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.FK__Produits__IdVill__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_Vendeurs_Utilisateurs" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Form114Model.C__MigrationHistory" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Form114Model.AspNetRoles" Width="1.5" PointX="7.375" PointY="9.5" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserClaims" Width="1.5" PointX="11.875" PointY="8" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserLogins" Width="1.5" PointX="11.875" PointY="10.75" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUsers" Width="1.5" PointX="9.625" PointY="8.375" />
+        <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Form114Model.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
