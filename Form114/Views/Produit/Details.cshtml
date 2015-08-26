@@ -29,7 +29,8 @@
 <p>@Model.NbPlaces @s</p>
 <p>@Model.Adresse</p>
 <p>@Model.Prix.FirstOrDefault().Montant € la nuit</p>
-@using (Html.BeginForm("", ""))
+@using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
 {
+    <input type="hidden" name="Prix" id="Prix" value="@Model.Prix.FirstOrDefault().Montant"/>
     @Html.DatePicker("Réserver")
 }
