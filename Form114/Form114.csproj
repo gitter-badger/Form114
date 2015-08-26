@@ -183,6 +183,13 @@
     <Compile Include="Infrastructure\EditorForHelper.cs" />
     <Compile Include="Infrastructure\FormFieldset.cs" />
     <Compile Include="Infrastructure\MyCarouselHelper.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Base\SearchBase.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Base\SearchOption.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionDateDebut.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionNombrePlaces.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionPrixMini.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionVille.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Search.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

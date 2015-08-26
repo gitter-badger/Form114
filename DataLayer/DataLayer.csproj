@@ -49,6 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\Acheteurs.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Administrateurs.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Adresses.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Continents.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
@@ -67,6 +76,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Form114.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Identites.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pays.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
@@ -80,6 +92,12 @@
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Regions.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Utilisateurs.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vendeurs.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Villes.cs">
