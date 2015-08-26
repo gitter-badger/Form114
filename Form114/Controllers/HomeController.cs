@@ -35,10 +35,8 @@ namespace Form114.Controllers
         public PartialViewResult Comptage()
         {
             // TODO faire le comptage des Acheteurs, creer la table "Identities"
-
-            Form114Entities DbConnection = new Form114Entities();
-            int comptageProduits = DbConnection.Produits.Select(x => x.IdProduit).Count();
-            int comptageAcheteurs = DbConnection.Utilisateurs.Select(x => x.IdUtilisateur).Count();
+            int comptageProduits = _db.Produits.Select(x => x.IdProduit).Count();
+            int comptageAcheteurs = _db.AspNetUsers.Select(x => x.Id).Count();
             int[] listComptage = new int[2]{comptageProduits, comptageAcheteurs};
 
             return PartialView("_Comptage", listComptage);

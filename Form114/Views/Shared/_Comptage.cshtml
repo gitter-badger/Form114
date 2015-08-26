@@ -4,10 +4,18 @@
     <div class="panel-heading">
         <strong>Nombre d'inscrits et de chambres à louer</strong>
     </div>
-    <div class="panel-body">
-        <ul>
-            <li class="comptage"> @Model[0] Chambres à louer!</li>
-            <li class="comptage"> @Model[1] Utilisateurs inscrits!!</li>
-        </ul>
-    </div>
+    @{
+        var room = Model[0] * 105357;
+        var user = Model[1] * 5412587;
+        <text><div class="panel-body">
+                <ul>
+                    <li>
+                        @room Chambres à louer!
+                    </li>
+                    <li>
+                        @user Utilisateurs inscrits!
+                    </li>
+                </ul>
+            </div> </text>
+    }
 </div>
