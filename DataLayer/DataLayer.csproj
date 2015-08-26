@@ -73,9 +73,6 @@
     <Compile Include="Models\Continents.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>Form114.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Form114.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

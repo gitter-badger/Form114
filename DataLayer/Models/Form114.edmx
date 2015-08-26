@@ -120,7 +120,7 @@
             <PropertyRef Name="IdPhoto" />
           </Key>
           <Property Name="IdPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdProduit" Type="int" />
+          <Property Name="IdProduit" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Prix">
@@ -177,8 +177,8 @@
           <Property Name="population" Type="int" Nullable="false" />
           <Property Name="isCapital" Type="smallint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Photos__IdProdui__5772F790">
-          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+        <Association Name="FK__Photos__IdProdui__1CBC4616">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -189,7 +189,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__5A4F643B">
+        <Association Name="FK__Prix__IdProduit__1F98B2C1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__54968AE5">
+        <Association Name="FK__Produits__IdVill__19DFD96B">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -396,15 +396,15 @@
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendeurs" EntityType="Self.Vendeurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Villes" EntityType="Self.Villes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Photos__IdProdui__5772F790" Association="Self.FK__Photos__IdProdui__5772F790">
+          <AssociationSet Name="FK__Photos__IdProdui__1CBC4616" Association="Self.FK__Photos__IdProdui__1CBC4616">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__5A4F643B" Association="Self.FK__Prix__IdProduit__5A4F643B">
+          <AssociationSet Name="FK__Prix__IdProduit__1F98B2C1" Association="Self.FK__Prix__IdProduit__1F98B2C1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__54968AE5" Association="Self.FK__Produits__IdVill__54968AE5">
+          <AssociationSet Name="FK__Produits__IdVill__19DFD96B" Association="Self.FK__Produits__IdVill__19DFD96B">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
@@ -589,9 +589,9 @@
             <PropertyRef Name="IdPhoto" />
           </Key>
           <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProduit" Type="Int32" />
+          <Property Name="IdProduit" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__5772F790" FromRole="Photos" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__1CBC4616" FromRole="Photos" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Prix">
           <Key>
@@ -602,7 +602,7 @@
           <Property Name="DateDebut" Type="DateTime" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Precision="0" />
           <Property Name="Montant" Type="Int32" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__5A4F643B" FromRole="Prix" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__1F98B2C1" FromRole="Prix" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Produits">
           <Key>
@@ -613,9 +613,9 @@
           <Property Name="NbPlaces" Type="Int32" />
           <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__5772F790" FromRole="Produits" ToRole="Photos" />
-          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__5A4F643B" FromRole="Produits" ToRole="Prix" />
-          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__54968AE5" FromRole="Produits" ToRole="Villes" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__1CBC4616" FromRole="Produits" ToRole="Photos" />
+          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__1F98B2C1" FromRole="Produits" ToRole="Prix" />
+          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__19DFD96B" FromRole="Produits" ToRole="Villes" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -658,7 +658,7 @@
           <Property Name="population" Type="Int32" Nullable="false" />
           <Property Name="isCapital" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Pays" Relationship="Self.Villes_Pays_fk" FromRole="Villes" ToRole="Pays" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__54968AE5" FromRole="Villes" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__19DFD96B" FromRole="Villes" ToRole="Produits" />
         </EntityType>
         <Association Name="Fk_Acheteurs_Utilisateurs">
           <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
@@ -784,8 +784,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photos__IdProdui__5772F790">
-          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+        <Association Name="FK__Photos__IdProdui__1CBC4616">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produits">
@@ -796,7 +796,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__5A4F643B">
+        <Association Name="FK__Prix__IdProduit__1F98B2C1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -808,7 +808,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__54968AE5">
+        <Association Name="FK__Produits__IdVill__19DFD96B">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -894,15 +894,15 @@
             <End Role="Pays" EntitySet="Pays" />
             <End Role="Villes" EntitySet="Villes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photos__IdProdui__5772F790" Association="Self.FK__Photos__IdProdui__5772F790">
+          <AssociationSet Name="FK__Photos__IdProdui__1CBC4616" Association="Self.FK__Photos__IdProdui__1CBC4616">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__5A4F643B" Association="Self.FK__Prix__IdProduit__5A4F643B">
+          <AssociationSet Name="FK__Prix__IdProduit__1F98B2C1" Association="Self.FK__Prix__IdProduit__1F98B2C1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__54968AE5" Association="Self.FK__Produits__IdVill__54968AE5">
+          <AssociationSet Name="FK__Produits__IdVill__19DFD96B" Association="Self.FK__Produits__IdVill__19DFD96B">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>

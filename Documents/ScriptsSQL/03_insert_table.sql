@@ -45,7 +45,7 @@ CREATE TABLE Produits
 CREATE TABLE Photos
 (
 	IdPhoto int identity PRIMARY KEY,
-	IdProduit int references Produits,
+	IdProduit int references Produits NOT NULL,
 	Path varchar(100)
 )
 
@@ -319,12 +319,14 @@ REFERENCES [dbo].[Utilisateurs] ([IdUtilisateur])
 GO
 ALTER TABLE [dbo].[Vendeurs] CHECK CONSTRAINT [Fk_Vendeurs_Utilisateurs]
 
-
-
 INSERT INTO Produits (IdVille, NbPlaces,Adresse, Description) VALUES
 (1, 1, '12 avenue de machin', ''),
 (1, 1, '24 rue de truc', ''),
 (2, 10, '2 chemin à louest', '')
+
+INSERT INTO Photos (IdProduit, Path)
+VALUES
+(1, 'photo11.jpg'), (1, 'photo12.jpg'), (2, 'photo21.jpg'), (2, 'photo22.jpg')
 
 INSERT INTO Prix (IdProduit, DateDebut,	DateFin, Montant) 
 VALUES

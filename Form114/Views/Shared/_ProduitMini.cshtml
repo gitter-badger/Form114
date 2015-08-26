@@ -1,14 +1,15 @@
-﻿@model DataLayer.Models.Produits
+﻿@model Form114.Models.ProduitViewModel
 
 @{
     var s = "place";
-    if(@Model.NbPlaces > 1)
+    if (@Model.NbPlaces > 1)
     {
         s += 's';
     }
 }
-<ul>
-    <li>ID : @Model.IdProduit</li>
-    <li>@Model.NbPlaces @s</li>
-    <li>@Model.Adresse</li>
-</ul>
+    <ul>
+        @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
+        <li>ID : @Model.IdProduit</li>
+        <li>@Model.NbPlaces @s</li>
+        <li>@Model.Adresse</li>
+    </ul>

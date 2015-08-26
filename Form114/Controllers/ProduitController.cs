@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Form114.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,15 @@ namespace Form114.Controllers
         public PartialViewResult Miniature(int id)
         {
             var produit = _db.Produits.Find(id);
-            return PartialView("_ProduitMini", produit);
+            var listePhotos = produit.Photos.Select(p => p.Path).ToList();
+            var pr = new ProduitViewModel()
+            {
+                IdProduit = produit.IdProduit,
+                NbPlaces = produit.NbPlaces ?? 1,
+                Adresse = produit.Adresse,
+                ListPhotos = listePhotos
+            };
+            return PartialView("_ProduitMini", pr);
         }
     }
 }
