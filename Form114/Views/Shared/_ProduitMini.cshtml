@@ -1,0 +1,14 @@
+﻿@model DataLayer.Models.Produits
+
+@{
+    var s = "place";
+    if(@Model.NbPlaces > 1)
+    {
+        s += 's';
+    }
+}
+<ul>
+    <li>ID : @Model.IdProduit</li>
+    <li>@Model.NbPlaces @s</li>
+    <li>@Model.Adresse</li>
+</ul>

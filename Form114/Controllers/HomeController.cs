@@ -9,9 +9,12 @@ namespace Form114.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly Form114Entities _db = new Form114Entities();
+        //TODO Changer la liste à afficher en fonction du nombre de vues
         public ActionResult Index()
         {
-            return View();
+            var list = _db.Produits.Take(3).ToList();
+            return View(list);
         }
 
         public ActionResult About()
@@ -27,6 +30,7 @@ namespace Form114.Controllers
 
             return View();
         }
+
         [ChildActionOnly]
         public PartialViewResult Comptage()
         {
