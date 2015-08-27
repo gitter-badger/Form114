@@ -22,16 +22,13 @@
 <div class="row">
     @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
     {
+        var s = "/Images/" + @item.name + ".jpg";
         <div class="panel panel-info col-lg-6">
             <div class="panel-heading">
                 <strong>Voyagez en @Html.ActionLink("" + item.name, "Index", new { id = item.name }) </strong>
             </div>
             <div class="panel-body">
-                <ul>
-                    <li class="list-group-item">
-                        <span class="badge"></span>
-                    </li>
-                </ul>
+                <img src="@s" height="180" width="280"/>
             </div>
         </div>
 
