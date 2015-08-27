@@ -143,6 +143,24 @@
           <Property Name="Adresse" Type="varchar" MaxLength="100" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="ProduitTracking">
+          <Key>
+            <PropertyRef Name="IdPT" />
+          </Key>
+          <Property Name="IdPT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatePT" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IdProduit" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promos">
+          <Key>
+            <PropertyRef Name="IdPromo" />
+          </Key>
+          <Property Name="IdPromo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProduit" Type="int" />
+          <Property Name="Promo" Type="int" Nullable="false" />
+          <Property Name="DateDeb" Type="date" Nullable="false" />
+          <Property Name="DateFin" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Regions">
           <Key>
             <PropertyRef Name="idRegion" />
@@ -189,7 +207,7 @@
           <Property Name="population" Type="int" Nullable="false" />
           <Property Name="isCapital" Type="smallint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Photos__IdProdui__5D60DB10">
+        <Association Name="FK__Photos__IdProdui__7928F116">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +219,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__603D47BB">
+        <Association Name="FK__Prix__IdProduit__7C055DC1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +231,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__5A846E65">
+        <Association Name="FK__Produits__IdVill__764C846B">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -225,7 +243,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdCli__79FD19BE">
+        <Association Name="FK__Promos__IdProdui__18A19C6F">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+          <End Role="Promos" Type="Self.Promos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="Promos">
+              <PropertyRef Name="IdProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__IdCli__15C52FC4">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -237,7 +267,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdPro__7908F585">
+        <Association Name="FK__Reservati__IdPro__14D10B8B">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,6 +371,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Fk_ProduitTracking_Produits">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
+          <End Role="ProduitTracking" Type="Self.ProduitTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="ProduitTracking">
+              <PropertyRef Name="IdProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_utilisateurs_adresse">
           <End Role="Adresses" Type="Self.Adresses" Multiplicity="1" />
           <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="*" />
@@ -428,28 +470,34 @@
           <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prix" EntityType="Self.Prix" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produits" EntityType="Self.Produits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProduitTracking" EntityType="Self.ProduitTracking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promos" EntityType="Self.Promos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendeurs" EntityType="Self.Vendeurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Villes" EntityType="Self.Villes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Photos__IdProdui__5D60DB10" Association="Self.FK__Photos__IdProdui__5D60DB10">
+          <AssociationSet Name="FK__Photos__IdProdui__7928F116" Association="Self.FK__Photos__IdProdui__7928F116">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__603D47BB" Association="Self.FK__Prix__IdProduit__603D47BB">
+          <AssociationSet Name="FK__Prix__IdProduit__7C055DC1" Association="Self.FK__Prix__IdProduit__7C055DC1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__5A846E65" Association="Self.FK__Produits__IdVill__5A846E65">
+          <AssociationSet Name="FK__Produits__IdVill__764C846B" Association="Self.FK__Produits__IdVill__764C846B">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdCli__79FD19BE" Association="Self.FK__Reservati__IdCli__79FD19BE">
+          <AssociationSet Name="FK__Promos__IdProdui__18A19C6F" Association="Self.FK__Promos__IdProdui__18A19C6F">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="Promos" EntitySet="Promos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__IdCli__15C52FC4" Association="Self.FK__Reservati__IdCli__15C52FC4">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdPro__7908F585" Association="Self.FK__Reservati__IdPro__7908F585">
+          <AssociationSet Name="FK__Reservati__IdPro__14D10B8B" Association="Self.FK__Reservati__IdPro__14D10B8B">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
@@ -480,6 +528,10 @@
           <AssociationSet Name="Fk_Identites_AspNetUsers" Association="Self.Fk_Identites_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Identites" EntitySet="Identites" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_ProduitTracking_Produits" Association="Self.Fk_ProduitTracking_Produits">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="ProduitTracking" EntitySet="ProduitTracking" />
           </AssociationSet>
           <AssociationSet Name="fk_utilisateurs_adresse" Association="Self.fk_utilisateurs_adresse">
             <End Role="Adresses" EntitySet="Adresses" />
@@ -583,7 +635,7 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdCli__79FD19BE" FromRole="AspNetUsers" ToRole="Reservations" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdCli__15C52FC4" FromRole="AspNetUsers" ToRole="Reservations" />
           <NavigationProperty Name="Identites" Relationship="Self.Fk_Identites_AspNetUsers" FromRole="AspNetUsers" ToRole="Identites" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
@@ -637,7 +689,7 @@
           <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProduit" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__5D60DB10" FromRole="Photos" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__7928F116" FromRole="Photos" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Prix">
           <Key>
@@ -648,7 +700,7 @@
           <Property Name="DateDebut" Type="DateTime" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Precision="0" />
           <Property Name="Montant" Type="Int32" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__603D47BB" FromRole="Prix" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__7C055DC1" FromRole="Prix" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Produits">
           <Key>
@@ -659,10 +711,32 @@
           <Property Name="NbPlaces" Type="Int32" />
           <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__5D60DB10" FromRole="Produits" ToRole="Photos" />
-          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__603D47BB" FromRole="Produits" ToRole="Prix" />
-          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__5A846E65" FromRole="Produits" ToRole="Villes" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdPro__7908F585" FromRole="Produits" ToRole="Reservations" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__7928F116" FromRole="Produits" ToRole="Photos" />
+          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__7C055DC1" FromRole="Produits" ToRole="Prix" />
+          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__764C846B" FromRole="Produits" ToRole="Villes" />
+          <NavigationProperty Name="Promos" Relationship="Self.FK__Promos__IdProdui__18A19C6F" FromRole="Produits" ToRole="Promos" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdPro__14D10B8B" FromRole="Produits" ToRole="Reservations" />
+          <NavigationProperty Name="ProduitTracking" Relationship="Self.Fk_ProduitTracking_Produits" FromRole="Produits" ToRole="ProduitTracking" />
+        </EntityType>
+        <EntityType Name="ProduitTracking">
+          <Key>
+            <PropertyRef Name="IdPT" />
+          </Key>
+          <Property Name="IdPT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatePT" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IdProduit" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Produits" Relationship="Self.Fk_ProduitTracking_Produits" FromRole="ProduitTracking" ToRole="Produits" />
+        </EntityType>
+        <EntityType Name="Promos">
+          <Key>
+            <PropertyRef Name="IdPromo" />
+          </Key>
+          <Property Name="IdPromo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProduit" Type="Int32" />
+          <Property Name="Promo" Type="Int32" Nullable="false" />
+          <Property Name="DateDeb" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Promos__IdProdui__18A19C6F" FromRole="Promos" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -685,8 +759,8 @@
           <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="NbPersonnes" Type="Int32" Nullable="false" />
           <Property Name="Prix" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Reservati__IdCli__79FD19BE" FromRole="Reservations" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Reservati__IdPro__7908F585" FromRole="Reservations" ToRole="Produits" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Reservati__IdCli__15C52FC4" FromRole="Reservations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Reservati__IdPro__14D10B8B" FromRole="Reservations" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Utilisateurs">
           <Key>
@@ -719,7 +793,7 @@
           <Property Name="population" Type="Int32" Nullable="false" />
           <Property Name="isCapital" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Pays" Relationship="Self.Villes_Pays_fk" FromRole="Villes" ToRole="Pays" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__5A846E65" FromRole="Villes" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__764C846B" FromRole="Villes" ToRole="Produits" />
         </EntityType>
         <Association Name="Fk_Acheteurs_Utilisateurs">
           <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
@@ -785,7 +859,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdCli__79FD19BE">
+        <Association Name="FK__Reservati__IdCli__15C52FC4">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -857,7 +931,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photos__IdProdui__5D60DB10">
+        <Association Name="FK__Photos__IdProdui__7928F116">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -869,7 +943,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__603D47BB">
+        <Association Name="FK__Prix__IdProduit__7C055DC1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -881,7 +955,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__5A846E65">
+        <Association Name="FK__Produits__IdVill__764C846B">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -893,7 +967,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdPro__7908F585">
+        <Association Name="FK__Promos__IdProdui__18A19C6F">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
+          <End Role="Promos" Type="Self.Promos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="Promos">
+              <PropertyRef Name="IdProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__IdPro__14D10B8B">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -901,6 +987,18 @@
               <PropertyRef Name="IdProduit" />
             </Principal>
             <Dependent Role="Reservations">
+              <PropertyRef Name="IdProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_ProduitTracking_Produits">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
+          <End Role="ProduitTracking" Type="Self.ProduitTracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="ProduitTracking">
               <PropertyRef Name="IdProduit" />
             </Dependent>
           </ReferentialConstraint>
@@ -935,6 +1033,8 @@
           <EntitySet Name="Photos" EntityType="Self.Photos" />
           <EntitySet Name="Prix" EntityType="Self.Prix" />
           <EntitySet Name="Produits" EntityType="Self.Produits" />
+          <EntitySet Name="ProduitTracking" EntityType="Self.ProduitTracking" />
+          <EntitySet Name="Promos" EntityType="Self.Promos" />
           <EntitySet Name="Regions" EntityType="Self.Regions" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" />
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" />
@@ -960,7 +1060,7 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdCli__79FD19BE" Association="Self.FK__Reservati__IdCli__79FD19BE">
+          <AssociationSet Name="FK__Reservati__IdCli__15C52FC4" Association="Self.FK__Reservati__IdCli__15C52FC4">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
@@ -984,21 +1084,29 @@
             <End Role="Pays" EntitySet="Pays" />
             <End Role="Villes" EntitySet="Villes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photos__IdProdui__5D60DB10" Association="Self.FK__Photos__IdProdui__5D60DB10">
+          <AssociationSet Name="FK__Photos__IdProdui__7928F116" Association="Self.FK__Photos__IdProdui__7928F116">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__603D47BB" Association="Self.FK__Prix__IdProduit__603D47BB">
+          <AssociationSet Name="FK__Prix__IdProduit__7C055DC1" Association="Self.FK__Prix__IdProduit__7C055DC1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__5A846E65" Association="Self.FK__Produits__IdVill__5A846E65">
+          <AssociationSet Name="FK__Produits__IdVill__764C846B" Association="Self.FK__Produits__IdVill__764C846B">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdPro__7908F585" Association="Self.FK__Reservati__IdPro__7908F585">
+          <AssociationSet Name="FK__Promos__IdProdui__18A19C6F" Association="Self.FK__Promos__IdProdui__18A19C6F">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="Promos" EntitySet="Promos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__IdPro__14D10B8B" Association="Self.FK__Reservati__IdPro__14D10B8B">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_ProduitTracking_Produits" Association="Self.Fk_ProduitTracking_Produits">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="ProduitTracking" EntitySet="ProduitTracking" />
           </AssociationSet>
           <AssociationSet Name="Fk_Vendeurs_Utilisateurs" Association="Self.Fk_Vendeurs_Utilisateurs">
             <End Role="Utilisateurs" EntitySet="Utilisateurs" />
@@ -1153,6 +1261,26 @@
                 <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProduitTracking">
+            <EntityTypeMapping TypeName="Form114Model.ProduitTracking">
+              <MappingFragment StoreEntitySet="ProduitTracking">
+                <ScalarProperty Name="IdPT" ColumnName="IdPT" />
+                <ScalarProperty Name="DatePT" ColumnName="DatePT" />
+                <ScalarProperty Name="IdProduit" ColumnName="IdProduit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promos">
+            <EntityTypeMapping TypeName="Form114Model.Promos">
+              <MappingFragment StoreEntitySet="Promos">
+                <ScalarProperty Name="IdPromo" ColumnName="IdPromo" />
+                <ScalarProperty Name="IdProduit" ColumnName="IdProduit" />
+                <ScalarProperty Name="Promo" ColumnName="Promo" />
+                <ScalarProperty Name="DateDeb" ColumnName="DateDeb" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

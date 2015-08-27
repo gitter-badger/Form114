@@ -18,7 +18,9 @@ namespace DataLayer.Models
         {
             this.Photos = new HashSet<Photos>();
             this.Prix = new HashSet<Prix>();
+            this.Promos = new HashSet<Promos>();
             this.Reservations = new HashSet<Reservations>();
+            this.ProduitTracking = new HashSet<ProduitTracking>();
         }
     
         public int IdProduit { get; set; }
@@ -30,6 +32,8 @@ namespace DataLayer.Models
         public virtual ICollection<Photos> Photos { get; set; }
         public virtual ICollection<Prix> Prix { get; set; }
         public virtual Villes Villes { get; set; }
+        public virtual ICollection<Promos> Promos { get; set; }
         public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<ProduitTracking> ProduitTracking { get; set; }
     }
 }
