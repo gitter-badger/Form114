@@ -19,7 +19,7 @@
     }
 </div>
 
-<div class="row">
+@*<div class="row">
     @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
     {
         var s = "/Images/" + @item.name + ".jpg";
@@ -32,5 +32,12 @@
             </div>
         </div>
 
+    }
+</div>*@
+
+<div class="row">
+    @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
+    {
+        @Html.Action("Catalog", "Home", new { id = item.idRegion})
     }
 </div>

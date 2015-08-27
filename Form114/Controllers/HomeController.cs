@@ -14,8 +14,8 @@ namespace Form114.Controllers
         public ActionResult Index()
         {
             var list = _db.Produits.Take(3).ToList();
-            var listCatalog = _db.Regions.Take(4).ToList();
-            ViewBag.listRegions = listCatalog;
+            //var listCatalog = _db.Regions.Take(4).ToList();
+            ViewBag.listRegions = _db.Regions.Take(4).ToList();
             return View(list);
         }
 
@@ -45,10 +45,8 @@ namespace Form114.Controllers
         }
 
         [ChildActionOnly]
-        public PartialViewResult Catalog(string id)
-        {
-            var listCatalog = _db.Regions.Select(x=>x.name).Take(4).ToList();
-            return PartialView("_Catalog", listCatalog);
+        public PartialViewResult Catalog(int id) {
+            return PartialView("_Catalog", _db.Regions.Find(id));
         }
     }
 }
