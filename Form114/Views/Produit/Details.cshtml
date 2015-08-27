@@ -8,12 +8,13 @@
 <h2>Details</h2>
 
 @section scripts{
-    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="~/Scripts/Search/Datepicker.js"></script>
 
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
 }
-  
+
 @{
     var s = "place";
     if (Model.NbPlaces > 1)
@@ -23,39 +24,39 @@
 }
 
 @*<div class="img">
-    <img src="~/Images/@Model.Photos.FirstOrDefault().Path" class="MonImage" alt="Pas de photo" />
-</div>*@
+        <img src="~/Images/@Model.Photos.FirstOrDefault().Path" class="MonImage" alt="Pas de photo" />
+    </div>*@
 @*<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="cadre">
-            <img src="~/Images/@Model.ListPhotos[0]" alt="Pas de photo" class="MonImage"/>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="cadre">
+                <img src="~/Images/@Model.ListPhotos[0]" alt="Pas de photo" class="MonImage"/>
+                </div>
+            </div>
+            <div class="item">
+                <div class="cadre">
+                <img src="~/Images/@Model.ListPhotos[1]" alt="Pas de photo" class="MonImage" />
+                </div>
             </div>
         </div>
-        <div class="item">
-            <div class="cadre">
-            <img src="~/Images/@Model.ListPhotos[1]" alt="Pas de photo" class="MonImage" />
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>*@
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>*@
 @Html.MyCarousel(Model.ListPhotos)
-    <p>ID : @Model.IdProduit</p>
-    <p>@Model.NbPlaces @s</p>
-    <p>@Model.Adresse</p>
-    <p>@Model.Prix € la nuit</p>
-    @using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
-    {
-        <input type="hidden" name="Prix" id="Prix" value="@Model.Prix" />
-        <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
-        <input type="hidden" name="NbPersonnes" value="2" />
-        @Html.DatePicker("Réserver")
-    }
+<p>ID : @Model.IdProduit</p>
+<p>@Model.NbPlaces @s</p>
+<p>@Model.Adresse</p>
+<p>@Model.Prix € la nuit</p>
+@using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
+{
+    <input type="hidden" name="Prix" id="Prix" value="@Model.Prix" />
+    <input type="hidden" name="IdProduit" id="idProduit" value="@Model.IdProduit" />
+    <input type="hidden" name="NbPersonnes" value="2" />
+    @Html.DatePicker("Réserver")
+}

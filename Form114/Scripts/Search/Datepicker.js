@@ -1,17 +1,24 @@
-﻿var array = ["2015-08-27", "2015-08-28", "2015-08-29"]
+﻿var array = []
 
-$('input').datepicker({
-    beforeShowDay: function (date) {
-        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-        return [array.indexOf(string) == -1]
-    }
-});
 $(function () {
-    $("#datepicker").datepicker({
-        beforeShowDay: function (date) {
-            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-            return [array.indexOf(string) == -1]
-        }
+    $("#datepicker").datepicker()
+    $("#datepicker").datepicker('option', 'beforeShowDay', excludeDates)
+    //$('#datepicker').datepicker('option', 'dateFormat', 'dd-mm-yy');
+
+    $('#datepicker1').datepicker()
+    $("#datepicker1").datepicker('option', 'beforeShowDay', excludeDates)
+    $("#datepicker").datepicker("option", "language", "fr");
+    $("#datepicker1").datepicker("option", "language", "fr");
+
+    $.getJSON("/Produit/GetJSONDateOccupees/" + $('#idProduit').val(), function (data) {
+        $.each(data, function (idx, date) {
+            array.push(date)
+        })
+
     });
-    $("#datepicker1").datepicker();
 });
+
+function excludeDates(date) {
+    var string = jQuery.datepicker.formatDate('m/d/yy', date);
+    return [$.inArray(string,array) == -1]
+};

@@ -53,5 +53,20 @@ namespace Form114.Controllers
             };
             return View(pr);
         }
+
+        public JsonResult GetJSONDateOccupees(int id)
+        {
+            var result = _db.Reservations.Where(r => r.IdProduit == id).Select(r => new { r.DateDebut, r.DateFin }).ToList();
+            var allDates = new List<string>();
+            foreach (var item in result)
+            {
+                var startingDate = item.DateDebut;
+                var endingDate = item.DateFin;
+                for (DateTime date = startingDate; date <= endingDate; date = date.AddDays(1))
+                    allDates.Add(date.ToShortDateString());
+            }
+
+            return Json(allDates, JsonRequestBehavior.AllowGet);
+        }
     }
 }

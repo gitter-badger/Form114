@@ -22,16 +22,21 @@ namespace Form114.Controllers
         [Authorize]
         public ActionResult Reserver(ReservationViewModel rvm)
         {
-            var r = new DataLayer.Models.Reservations()
+            var userID = _user.GetUserId();
+            var nbReserv = _db.Reservations.Where(r => r.IdClient == userID).Count();
+            var prixBase  = rvm.Prix;
+            int prix = nbReserv > 0 ? (int)Math.Round(prixBase * 0.90, 1) : prixBase;
+            var res = new DataLayer.Models.Reservations()
             {
                 DateDebut = rvm.DateDebut,
                 DateFin = rvm.DateFin,
                 IdProduit = rvm.IdProduit,
                 NbPersonnes = rvm.NbPersonnes,
-                Prix = rvm.Prix,
+                Prix = prix,
                 IdClient = _user.GetUserId()
             };
-            _db.Reservations.Add(r);
+            rvm.Prix = prix;
+            _db.Reservations.Add(res);
             _db.SaveChanges();
             return View(rvm);
         }
