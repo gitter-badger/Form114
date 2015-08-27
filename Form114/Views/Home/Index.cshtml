@@ -18,3 +18,22 @@
         <div class="col-sm-4">@Html.Action("Miniature", "Produit", new { id = item.IdProduit })</div>
     }
 </div>
+
+<div class="row">
+    @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
+    {
+        <div class="panel panel-info col-lg-6">
+            <div class="panel-heading">
+                <strong>Voyagez en @Html.ActionLink("" + item.name, "Index", new { id = item.name }) </strong>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li class="list-group-item">
+                        <span class="badge"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    }
+</div>

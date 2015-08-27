@@ -14,6 +14,8 @@ namespace Form114.Controllers
         public ActionResult Index()
         {
             var list = _db.Produits.Take(3).ToList();
+            var listCatalog = _db.Regions.Take(4).ToList();
+            ViewBag.listRegions = listCatalog;
             return View(list);
         }
 
@@ -40,6 +42,13 @@ namespace Form114.Controllers
             int[] listComptage = new int[2]{comptageProduits, comptageAcheteurs};
 
             return PartialView("_Comptage", listComptage);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Catalog(string id)
+        {
+            var listCatalog = _db.Regions.Select(x=>x.name).Take(4).ToList();
+            return PartialView("_Catalog", listCatalog);
         }
     }
 }

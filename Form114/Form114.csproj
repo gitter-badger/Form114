@@ -289,6 +289,7 @@
     <Content Include="Views\Shared\_ProduitMini.cshtml" />
     <Content Include="Views\Produit\Details.cshtml" />
     <Content Include="Views\Reservation\Reserver.cshtml" />
+    <Content Include="Views\Home\_Catalog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
