@@ -32,5 +32,7 @@
 @using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
 {
     <input type="hidden" name="Prix" id="Prix" value="@Model.Prix.FirstOrDefault().Montant"/>
+    <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
+    <input type="hidden" name="NbPersonnes" value="2" />
     @Html.DatePicker("Réserver")
 }

@@ -1,5 +1,7 @@
 use Form114
 
+if object_id('Reservations') is not null
+	drop table Reservations
 if object_id('Photos') is not null
 	drop table Photos
 if object_id('Prix') is not null
@@ -18,8 +20,7 @@ if object_id('Utilisateurs') is not null
 if object_id('Identites') is not null
 	drop table Identites
 if object_id('Adresses') is not null
-	drop table Adresses
-	
+	drop table Adresses	
 
 if object_id('AspNetUserClaims') is not null
 	drop table AspNetUserClaims
@@ -261,6 +262,18 @@ CREATE TABLE [dbo].[AspNetUsers](
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+CREATE TABLE Reservations
+(
+	IdReservation int identity PRIMARY KEY,
+	IdProduit int not null references Produits,
+	IdClient nvarchar(128) not null references AspNetUsers,
+	DateDebut Date not null,
+	DateFin Date not null,
+	NbPersonnes int not null,
+	Prix int not null
+)
 
 GO
 INSERT [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'65e2fafa-96fd-4b64-a8b5-5c268fce2920', N'matthieu@gmail.com', 0, N'AKhCMfSv2ojt2bOeh0RgpYPMTLU4nM39z5rf2x75jJ3pwSSduWaFDXv6iUK2F018fg==', N'271e85c1-c52b-46bc-b9d8-614ed3a79382', NULL, 0, 0, NULL, 1, 0, N'matthieu@gmail.com')

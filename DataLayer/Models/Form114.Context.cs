@@ -39,6 +39,7 @@ namespace DataLayer.Models
         public virtual DbSet<Prix> Prix { get; set; }
         public virtual DbSet<Produits> Produits { get; set; }
         public virtual DbSet<Regions> Regions { get; set; }
+        public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Utilisateurs> Utilisateurs { get; set; }
         public virtual DbSet<Vendeurs> Vendeurs { get; set; }
         public virtual DbSet<Villes> Villes { get; set; }

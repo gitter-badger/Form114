@@ -10,6 +10,7 @@ namespace Form114.Models
         public int IdProduit { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
+        public int NbPersonnes { get; set; }
         public int Prix { get; set; }
     }
 }

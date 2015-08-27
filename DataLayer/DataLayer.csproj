@@ -106,6 +106,9 @@
     <Compile Include="Models\Regions.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Reservations.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Utilisateurs.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
