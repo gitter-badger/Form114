@@ -7,6 +7,7 @@
 @section scripts{
 <script src="~/Scripts/jquery-2.1.4.js"></script>
 <script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/Search/Region.js"></script>
     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
     <script src="~/Scripts/Search/Slider.js"></script>
 <script src="~/Scripts/Search/ListeVille.js"></script>
@@ -25,6 +26,16 @@
     
         @Html.ListeVille()
     
+        @*@Html.ListeDeroulante("Region")
+    
+        @Html.ListeDeroulante("Pays")
+    
+        @Html.ListeDeroulante("Ville")*@
+
+    <select id="Region"></select>
+    <select id="Pays"></select>
+    <select id="Ville1"></select>
+
         @Html.NombreDePlace()
         
         @Html.DatePicker("Rechercher")

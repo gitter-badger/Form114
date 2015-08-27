@@ -7,12 +7,41 @@
 <h2>Result</h2>
 
 @*<div class="row">*@
-@foreach (var item in @Model)
+@*@foreach (var item in @Model)
 {
     <p>@item.IdProduit</p>
     <p>@item.Prix</p>
     <p>@item.Adresse</p>
-}
+}*@
+
+<table class="table table-hover table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>Ville</th>
+            <th>nombre de chambre</th>
+            <th>adresse</th>
+            <th>Prix</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            foreach (var item1 in item.Prix)
+            {
+                if (item1.Montant > ViewBag.PrixMini) { 
+                <tr>
+                    <td>@item.Villes.name</td>
+                    <td>@item.NbPlaces</td>
+                    <td>@item.Adresse</td>
+                    <td>@item1.Montant</td>
+                    <td><a href="#">Réserver</a></td>
+                </tr>
+                }
+            }
+        }
+    </tbody>
+
+</table>
 
 @*@for (int i = 0; i < ViewBag.listeChoisi.Length; i++)
 { 

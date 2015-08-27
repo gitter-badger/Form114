@@ -36,13 +36,36 @@ namespace Form114.Controllers
             result = sb.GetResult();
             sb = new SearchOptionDateDebut(sb, svm.DateDebut);
             result = sb.GetResult();
+            ViewBag.PrixMini = svm.PrixMini;
             return View(result);
         }
 
         public JsonResult ListeVille()
         {
             var lV = new Form114Entities().Villes.OrderBy(v => v.name).Select(v => new { id = v.idVille, name = v.name });
+            var liste = lV.ToList();
             return Json(lV, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListeVille1(string id)
+        {
+            var lV = new Form114Entities().Villes.Where( v => v.Pays.CodeIso3 == id).OrderBy(v => v.name).Select(v => new { id = v.idVille, name = v.name });
+            var liste = lV.ToList();
+            return Json(lV, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListeRegion()
+        {
+            var lR = new Form114Entities().Regions.OrderBy(r => r.name).Select(r => new { id = r.idRegion, name = r.name });
+            return Json(lR, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ListePays(string id)
+        {
+            var ID = Convert.ToInt16(id);
+            var lR = new Form114Entities().Pays.Where(r => r.idRegion == ID).OrderBy(r => r.Name).Select(r => new { id = r.CodeIso3, name = r.Name });
+            var result = lR.ToList();
+            return Json(lR, JsonRequestBehavior.AllowGet);
         }
     }
 }

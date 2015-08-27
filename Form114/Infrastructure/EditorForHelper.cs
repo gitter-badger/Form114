@@ -114,5 +114,16 @@ namespace Form114.Infrastructure
             return new MvcHtmlString(str);
         }
 
+        //public static MvcHtmlString ListeDeroulante(this HtmlHelper helper, string nom)
+        //{
+        //    var str = "";
+        //    str += "<select id=" + nom + ">";
+        //    str += "</select>";
+        ////            <select id="idRegion">
+
+        ////</select>
+        //    return new MvcHtmlString(str);
+        //}
+
     }
 }
