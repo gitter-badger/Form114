@@ -1,4 +1,4 @@
-﻿@model DataLayer.Models.Produits
+﻿@model Form114.Models.ProduitViewModel
 @using Form114.Infrastructure
 
 @{
@@ -22,17 +22,40 @@
     }
 }
 
-<div class="img">
-    <img src="~/Images/@Model.Photos.FirstOrDefault().Path" alt="Pas de photo" />
+@*<div class="img">
+    <img src="~/Images/@Model.Photos.FirstOrDefault().Path" class="MonImage" alt="Pas de photo" />
+</div>*@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="cadre">
+            <img src="~/Images/@Model.ListPhotos[0]" alt="Pas de photo" class="MonImage"/>
+            </div>
+        </div>
+        <div class="item">
+            <div class="cadre">
+            <img src="~/Images/@Model.ListPhotos[1]" alt="Pas de photo" class="MonImage" />
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
-<p>ID : @Model.IdProduit</p>
-<p>@Model.NbPlaces @s</p>
-<p>@Model.Adresse</p>
-<p>@Model.Prix.FirstOrDefault().Montant € la nuit</p>
-@using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
-{
-    <input type="hidden" name="Prix" id="Prix" value="@Model.Prix.FirstOrDefault().Montant"/>
-    <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
-    <input type="hidden" name="NbPersonnes" value="2" />
-    @Html.DatePicker("Réserver")
-}
+@*@Html.MyCarousel((List<string>)@ViewBag.photo, "myCarousel")*@
+    <p>ID : @Model.IdProduit</p>
+    <p>@Model.NbPlaces @s</p>
+    <p>@Model.Adresse</p>
+    <p>@Model.Prix € la nuit</p>
+    @using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
+    {
+        <input type="hidden" name="Prix" id="Prix" value="@Model.Prix" />
+        <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
+        <input type="hidden" name="NbPersonnes" value="2" />
+        @Html.DatePicker("Réserver")
+    }

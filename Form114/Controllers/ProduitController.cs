@@ -42,12 +42,14 @@ namespace Form114.Controllers
         {
             var produit = _db.Produits.Find(id);
             var listePhotos = produit.Photos.Select(p => p.Path).ToList();
+            var prix = produit.Prix.FirstOrDefault().Montant;
             var pr = new ProduitViewModel()
             {
                 IdProduit = produit.IdProduit,
                 NbPlaces = produit.NbPlaces ?? 1,
                 Adresse = produit.Adresse,
-                ListPhotos = listePhotos
+                ListPhotos = listePhotos,
+                Prix = (prix != null ? (int)prix : 0)
             };
             return View(pr);
         }

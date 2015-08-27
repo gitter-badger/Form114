@@ -12,6 +12,7 @@ namespace Form114.Models
         public int NbPlaces { get; set; }
         public string Adresse { get; set; }
         public List<String> ListPhotos { get; set; }
+        public int Prix { get; set; }
 
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
