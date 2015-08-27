@@ -41,7 +41,15 @@ namespace Form114.Controllers
         public ActionResult Details(int id)
         {
             var produit = _db.Produits.Find(id);
-            return View(produit);
+            var listePhotos = produit.Photos.Select(p => p.Path).ToList();
+            var pr = new ProduitViewModel()
+            {
+                IdProduit = produit.IdProduit,
+                NbPlaces = produit.NbPlaces ?? 1,
+                Adresse = produit.Adresse,
+                ListPhotos = listePhotos
+            };
+            return View(pr);
         }
     }
 }
