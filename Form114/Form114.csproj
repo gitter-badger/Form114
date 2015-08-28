@@ -173,6 +173,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
+    <Compile Include="Areas\Areas\Controllers\ProduitsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Form114Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -224,12 +226,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Images\Index-big.jpg" />
     <Content Include="Images\photo11.jpg" />
     <Content Include="Images\photo12.jpg" />
     <Content Include="Images\photo21.jpg" />
     <Content Include="Images\photo22.jpg" />
+    <Content Include="Images\r1.jpg" />
+    <Content Include="Images\r2.jpg" />
+    <Content Include="Images\r3.jpg" />
+    <Content Include="Images\r4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Areas\Views\web.config" />
+    <Content Include="Areas\Areas\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Areas\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Areas\Views\Produits\Create.cshtml" />
+    <Content Include="Areas\Areas\Views\Produits\Delete.cshtml" />
+    <Content Include="Areas\Areas\Views\Produits\Details.cshtml" />
+    <Content Include="Areas\Areas\Views\Produits\Edit.cshtml" />
+    <Content Include="Areas\Areas\Views\Produits\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\Details\AfficherPrix.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -247,6 +262,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Search\Datepicker.js" />
     <Content Include="Scripts\Search\ListeVille.js" />
+    <Content Include="Scripts\Search\Region.js" />
     <Content Include="Scripts\Search\Slider.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -293,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Areas\Models\" />
     <Folder Include="Views\Form114\" />
   </ItemGroup>
   <ItemGroup>
