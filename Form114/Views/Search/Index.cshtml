@@ -5,41 +5,43 @@
 }
 
 @section scripts{
-<script src="~/Scripts/jquery-2.1.4.js"></script>
-<script src="~/Scripts/jquery-ui.js"></script>
-<script src="~/Scripts/Search/Region.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.fr.js"></script>
+    <script src="~/Scripts/Search/Region.js"></script>
     <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
     <script src="~/Scripts/Search/Slider.js"></script>
-<script src="~/Scripts/Search/ListeVille.js"></script>
-<script src="~/Scripts/Search/Datepicker.js"></script>
+    <script src="~/Scripts/Search/ListeVille.js"></script>
+    <script src="~/Scripts/Search/Datepicker.js"></script>
 
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
 }
 <h2>Search</h2>
 
 
-@using (Html.BeginForm("Result", "Search")){
+@using (Html.BeginForm("Result", "Search"))
+{
     using (@Html.FieldsetHelper("Prix du Logement"))
     {
         @Html.Slider("slider-range")
-    
-        @Html.ListeVille()
-    
-        @*@Html.ListeDeroulante("Region")
-    
-        @Html.ListeDeroulante("Pays")
-    
-        @Html.ListeDeroulante("Ville")*@
 
-    <select id="Region"></select>
-    <select id="Pays"></select>
-    <select id="Ville1"></select>
+        @Html.ListeVille()
+
+        @*@Html.ListeDeroulante("Region")
+
+            @Html.ListeDeroulante("Pays")
+
+            @Html.ListeDeroulante("Ville")*@
+
+        <select id="Region" name="Region"></select>
+        <select id="Pays"></select>
+        <select id="Ville1"></select>
 
         @Html.NombreDePlace()
-        
+
         @Html.DatePicker("Rechercher")
-    
+
     }
 
 }

@@ -1,5 +1,13 @@
 ﻿$(function () {
-    $('.img').click(function () {
-        console.log("T'as cliqué")
+    $('.img1').click(function () {
+        var s = "../Produit/Details/" + $(this).children('.idProduit').html()
+        window.location = s
     })
+
+    $('.FormSubmitButton').click(function () {
+        console.log($(this).find('#IdRegion').val())
+        //$('#idCurrentPage').val($(this).html());
+        $(this).find('#IdFormPagination').submit();
+        return false;
+    });
 })

@@ -9,20 +9,18 @@ namespace Form114.Infrastructure.SearchProducts
 {
     internal class Search :SearchBase
     {
-        private List<Produits> SearchAnnonces;
-
         public Search()
         {
             SearchAnnonces = new Form114Entities().Produits.ToList();
         }
 
 
-        public Search(List<Produits> result)
+        public Search(IEnumerable<Produits> result)
         {
             SearchAnnonces = result;
         }
 
-        public override List<Produits> GetResult()
+        public override IEnumerable<Produits> GetResult()
         {
             return SearchAnnonces;
         }

@@ -195,6 +195,7 @@
     <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionDateDebut.cs" />
     <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionNombrePlaces.cs" />
     <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionPrixMini.cs" />
+    <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionRegion.cs" />
     <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionVille.cs" />
     <Compile Include="Infrastructure\SearchProducts\Search.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,6 +243,7 @@
     <Content Include="Images\r2.jpg" />
     <Content Include="Images\r3.jpg" />
     <Content Include="Images\r4.jpg" />
+    <Content Include="Scripts\bootstrap-datepicker.fr.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Areas\Views\web.config" />
@@ -259,6 +261,7 @@
     <Content Include="Scripts\DateRangePicker\moment.js" />
     <Content Include="Scripts\DateRangePicker\moment.min.js" />
     <Content Include="Scripts\Details\AfficherPrix.js" />
+    <Content Include="Scripts\Home\VuesPartielles.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />

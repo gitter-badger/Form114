@@ -8,6 +8,8 @@ namespace Form114.Infrastructure.SearchProducts.Base
 {
     internal abstract class SearchBase
     {
-        public abstract List<Produits> GetResult();
+        protected IEnumerable<Produits> SearchAnnonces;
+
+        public abstract IEnumerable<Produits> GetResult();
     }
 }

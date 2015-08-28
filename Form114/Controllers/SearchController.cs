@@ -23,21 +23,31 @@ namespace Form114.Controllers
             return View(svm);
         }
 
+        [HttpPost]
         public ActionResult Result(SearchViewModel svm)
         {
             //var db = new Form114Entities();
             //var liste = db.Produits;
             SearchBase sb = new Search();
-            sb = new SearchOptionVille(sb, svm.Ville);
-            var result = sb.GetResult();
+
             sb = new SearchOptionNombrePlaces(sb, svm.nbPlaces);
-            result = sb.GetResult();
             sb = new SearchOptionPrixMini(sb, svm.PrixMini);
-            result = sb.GetResult();
             sb = new SearchOptionDateDebut(sb, svm.DateDebut);
-            result = sb.GetResult();
+            sb = new SearchOptionRegion(sb, svm.Region);
+            sb = new SearchOptionVille(sb, svm.Ville);
+            var result = sb.GetResult().ToList();
             ViewBag.PrixMini = svm.PrixMini;
             return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult ResultRegion(int id)
+        {
+            SearchBase sb = new Search();
+            sb = new SearchOptionRegion(sb, id);
+            var result = sb.GetResult().ToList();
+            ViewBag.PrixMini = 0;
+            return View("Result",result);
         }
 
         public JsonResult ListeVille()

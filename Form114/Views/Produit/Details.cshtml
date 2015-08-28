@@ -10,6 +10,7 @@
 @section scripts{
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.fr.js"></script>
     <script src="~/Scripts/Search/Datepicker.js"></script>
 
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
@@ -23,15 +24,15 @@
     }
 }
 
-@Html.MyCarousel(Model.ListPhotos, Model.IdProduit , "cadre", "MonImage")
-    <p>ID : @Model.IdProduit</p>
-    <p>@Model.NbPlaces @s</p>
-    <p>@Model.Adresse</p>
-    <p>@Model.Prix € la nuit</p>
-    @using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
-    {
-        <input type="hidden" name="Prix" id="Prix" value="@Model.Prix" />
-        <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
-        <input type="hidden" name="NbPersonnes" value="2" />
-        @Html.DatePicker("Réserver")
-    }
+@Html.MyCarousel(Model.ListPhotos, Model.IdProduit, "cadre", "MonImage")
+<p>ID : @Model.IdProduit</p>
+<p>@Model.NbPlaces @s</p>
+<p>@Model.Adresse</p>
+<p>@Model.Prix € la nuit</p>
+@using (Html.BeginForm("Reserver", "Reservation", FormMethod.Post))
+{
+    <input type="hidden" name="Prix" id="Prix" value="@Model.Prix" />
+    <input type="hidden" name="IdProduit" value="@Model.IdProduit" />
+    <input type="hidden" name="NbPersonnes" value="2" />
+    @Html.DatePicker("Réserver")
+}

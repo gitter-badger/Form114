@@ -4,13 +4,19 @@
     var strImage = "/Images/r" + Model.idRegion + ".jpg";
 }
 
-<div class="panel panel-info col-lg-6">
-    <div class="panel-heading">
-        <strong>Voyagez en @Html.ActionLink(Model.name, "Index", new { id = Model.name }) </strong>
-    </div>
-    <div class="panel-body">
-        <div class="imgind">
-        <img src=@strImage height="180" width="280" class="imageIndex1"/>
-        </div>
+<div class="FormSubmitButton">
+    <div class="panel panel-info col-lg-6">
+        @using (Html.BeginForm("ResultRegion", "Search", FormMethod.Post, new { id = "IdFormPagination" }))
+        {
+            <input type="hidden" id="IdRegion" name="id" value="@Model.idRegion" />
+            <div class="panel-heading">
+                <strong>Voyagez en <a href="#" class="">@Model.name</a> @*, "Index", new { id = Model.name })*@ </strong>
+            </div>
+            <div class="panel-body">
+                <div class="imgind">
+                    <img src=@strImage height="180" width="280" class="imageIndex1" />
+                </div>
+            </div>
+        }
     </div>
 </div>

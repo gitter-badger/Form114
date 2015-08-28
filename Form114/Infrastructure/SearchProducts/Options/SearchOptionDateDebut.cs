@@ -18,7 +18,7 @@ namespace Form114.Infrastructure.SearchProducts.Options
             _Debut = Debut;
         }
 
-        public override List<Produits> GetResult()
+        public override IEnumerable<Produits> GetResult()
         {
             // TODO : refaire après la mise a jour base de données sur la table Produits, prix ne pas être null.
             List<Produits> listeDeProduitsDateDebut = new List<Produits>();

@@ -19,7 +19,7 @@ namespace Form114.Infrastructure.SearchProducts.Options
             _nombreDePlace = nombreDePlace;
         }
 
-        public override List<Produits> GetResult()
+        public override IEnumerable<Produits> GetResult()
         {
             //return _Ville != null ? new Form114Entities().Produits.Where(p => p.IdVille == _Ville).OrderBy(p => p.IdProduit) : new Form114Entities().Produits.OrderBy();
             // TODO : refaire après la mise a jour base de données sur la table Produits, prix ne pas être null

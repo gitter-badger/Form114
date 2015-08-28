@@ -10,8 +10,7 @@
 <div class="img1">
     @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
     @Html.MyCarousel(Model.ListPhotos, Model.IdProduit,"cadre1","MonImage")
-    <p>ID : @Model.IdProduit</p>
+    <p>ID : <div class="idProduit">@Model.IdProduit</div></p>
     <p>@Model.NbPlaces @s</p>
     <p>@Model.Adresse</p>
-    <p>@Html.ActionLink("Détails", "Details", new { controller = "Produit", id = Model.IdProduit })</p>
 </div>
