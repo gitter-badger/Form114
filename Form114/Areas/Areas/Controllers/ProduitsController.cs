@@ -11,6 +11,7 @@ using System.IO;
 
 namespace Form114.Areas.Areas.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class ProduitsController : Controller
     {
         private Form114Entities db = new Form114Entities();
@@ -84,6 +85,7 @@ namespace Form114.Areas.Areas.Controllers
                     
                 };
                 db.Prix.Add(prix);
+                db.SaveChanges();
                 var photo = new Photos
                 {
                     IdProduit = produits.IdProduit,
