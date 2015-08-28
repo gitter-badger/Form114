@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Form114.Infrastructure.Filters;
 
 namespace Form114.Controllers
 {
@@ -38,6 +39,7 @@ namespace Form114.Controllers
             return PartialView("_ProduitMini", pr);
         }
 
+        [ProduitTrackerFilter]
         public ActionResult Details(int id)
         {
             var produit = _db.Produits.Find(id);
