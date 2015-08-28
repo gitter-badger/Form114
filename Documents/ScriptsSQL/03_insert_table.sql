@@ -1,5 +1,9 @@
 use Form114
 
+if object_id('Promos') is not null
+	drop table Promos
+if object_id('ProduitTracking') is not null
+	drop table ProduitTracking
 if object_id('Reservations') is not null
 	drop table Reservations
 if object_id('Photos') is not null
@@ -32,6 +36,7 @@ if object_id('AspNetUsers') is not null
 	drop table AspNetUsers
 if object_id('AspNetRoles') is not null
 	drop table AspNetRoles
+	
 GO
 
 CREATE TABLE Produits
@@ -275,6 +280,37 @@ CREATE TABLE Reservations
 	Prix int not null
 )
 
+GO 
+CREATE TABLE Promos
+(
+	IdPromo int identity PRIMARY KEY,
+	IdProduit int references Produits,
+	Promo int not null,
+	DateDeb DATE not null,
+	DateFin DATE not null,
+)
+GO
+/****** Object:  Table [dbo].[ProduitTracking]    Script Date: 8/27/2015 4:45:31 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ProduitTracking](
+	[IdPT] [int] IDENTITY(1,1) NOT NULL,
+	[DatePT] [datetime2](7) not NULL,
+	[IdProduit] int not NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdPT] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+
 GO
 INSERT [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'65e2fafa-96fd-4b64-a8b5-5c268fce2920', N'matthieu@gmail.com', 0, N'AKhCMfSv2ojt2bOeh0RgpYPMTLU4nM39z5rf2x75jJ3pwSSduWaFDXv6iUK2F018fg==', N'271e85c1-c52b-46bc-b9d8-614ed3a79382', NULL, 0, 0, NULL, 1, 0, N'matthieu@gmail.com')
 ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
@@ -331,6 +367,11 @@ ALTER TABLE [dbo].[Vendeurs]  WITH CHECK ADD  CONSTRAINT [Fk_Vendeurs_Utilisateu
 REFERENCES [dbo].[Utilisateurs] ([IdUtilisateur])
 GO
 ALTER TABLE [dbo].[Vendeurs] CHECK CONSTRAINT [Fk_Vendeurs_Utilisateurs]
+GO
+ALTER TABLE [dbo].[ProduitTracking]  WITH CHECK ADD  CONSTRAINT [Fk_ProduitTracking_Produits] FOREIGN KEY([IdProduit])
+REFERENCES [dbo].[Produits] ([IdProduit])
+GO
+ALTER TABLE [dbo].[ProduitTracking] CHECK CONSTRAINT [Fk_ProduitTracking_Produits]
 
 SET IDENTITY_INSERT [dbo].[Produits] ON 
 INSERT [dbo].[Produits] ([IdProduit], [IdVille], [NbPlaces], [Adresse], [Description]) VALUES (1, 1, 1, N'12 avenue de machin', N'')
@@ -750,112 +791,11 @@ VALUES
 GO
 SET ANSI_PADDING OFF
 GO
-SET IDENTITY_INSERT [dbo].[Prix] ON 
+--SET IDENTITY_INSERT [dbo].[Prix] ON 
+INSERT INTO Prix([IdProduit],[DateDebut],[DateFin]) VALUES(1,'01-07-18','05-31-16'),(2,'11-13-15','07-25-18'),(3,'11-19-17','11-14-16'),(4,'12-09-15','07-04-16'),(5,'07-12-18','11-29-15'),(6,'12-23-15','12-06-16'),(7,'12-27-16','12-12-17'),(8,'03-18-16','02-13-18'),(9,'04-11-16','09-29-17'),(10,'02-08-18','03-15-16'),(11,'02-27-17','03-25-16'),(12,'09-02-15','03-31-16'),(13,'05-14-18','09-13-18'),(14,'11-04-16','01-06-17'),(15,'05-01-16','04-29-18'),(16,'06-20-16','11-11-15'),(17,'08-30-15','01-01-16'),(18,'03-10-16','11-03-16'),(19,'08-18-17','11-08-16'),(20,'06-30-18','02-17-17'),(21,'03-03-17','09-25-17'),(22,'08-18-15','01-29-16'),(23,'06-07-17','08-27-15'),(24,'10-26-17','08-19-18'),(25,'10-08-16','02-11-16'),(26,'06-05-18','08-25-18'),(27,'12-31-17','12-15-16'),(28,'01-11-17','05-18-16'),(29,'03-31-16','10-04-15'),(30,'08-09-16','06-25-16'),(31,'04-15-17','07-05-17'),(32,'06-10-16','04-30-16'),(33,'11-11-15','03-01-16'),(34,'12-28-16','02-22-16'),(35,'03-03-16','10-20-18'),(36,'04-17-18','09-16-18'),(37,'03-17-16','01-23-17'),(38,'04-24-16','06-29-16'),(39,'12-29-16','04-22-18'),(40,'06-23-18','12-09-18'),(41,'02-14-16','08-29-16'),(42,'12-05-16','11-14-18'),(43,'09-13-15','01-08-18'),(44,'05-05-17','06-24-17'),(45,'04-05-16','12-03-16'),(46,'05-16-16','07-07-18'),(47,'01-05-17','08-04-17'),(48,'04-28-17','11-04-16'),(49,'06-23-17','03-05-17'),(50,'01-05-16','01-24-18'),(51,'07-22-17','09-10-18'),(52,'02-27-17','04-21-18'),(53,'06-09-16','07-15-18'),(54,'09-24-15','03-13-18'),(55,'10-17-15','12-20-16'),(56,'03-08-17','02-10-18'),(57,'08-27-15','02-09-17'),(58,'03-05-16','12-08-18'),(59,'11-20-15','02-29-16'),(60,'10-20-17','10-08-16'),(61,'04-21-16','08-17-17'),(62,'04-23-18','08-04-17'),(63,'01-16-16','12-29-16'),(64,'08-11-17','06-05-18'),(65,'09-05-15','07-03-16'),(66,'12-20-17','11-03-18'),(67,'05-06-16','02-10-16'),(68,'12-14-15','02-06-16'),(69,'10-04-15','07-15-16'),(70,'01-09-18','04-03-18'),(71,'01-05-17','03-06-18'),(72,'09-24-15','05-21-17'),(73,'10-30-17','10-18-18'),(74,'10-06-17','03-10-16'),(75,'06-07-18','12-17-17'),(76,'07-15-17','05-05-18'),(77,'07-24-16','10-01-16'),(78,'07-13-16','06-24-16'),(79,'12-07-15','10-29-15'),(80,'08-29-16','11-09-15'),(81,'04-11-17','08-10-16'),(82,'03-06-17','06-27-18'),(83,'04-13-17','11-18-16'),(84,'01-13-16','03-18-17'),(85,'12-06-16','12-15-16'),(86,'06-20-17','09-16-18'),(87,'02-26-18','12-10-15'),(88,'09-11-15','08-17-17'),(89,'03-03-16','11-24-18'),(90,'12-17-15','01-09-16'),(91,'08-19-15','10-28-18'),(92,'01-22-18','09-27-17'),(93,'12-20-16','12-26-15'),(94,'07-08-16','03-26-18'),(95,'11-01-15','12-19-15'),(96,'06-28-18','04-06-17'),(97,'03-05-16','03-10-17'),(98,'04-22-16','06-25-16'),(99,'01-04-17','12-19-15'),(100,'11-20-16','10-11-16')
+,(101,'02-20-17','02-27-18'),(102,'05-08-16','04-20-17'),(103,'06-27-16','07-27-18'),(104,'02-17-18','03-02-18'),(105,'08-17-18','12-26-18'),(106,'06-07-17','09-14-17'),(107,'05-06-16','05-04-17'),(108,'07-05-18','05-28-16'),(109,'10-17-17','06-11-17'),(110,'05-13-18','01-24-18'),(111,'06-07-16','03-26-16'),(112,'04-03-16','10-20-16'),(113,'09-08-17','07-14-18'),(114,'05-29-16','11-29-16'),(115,'03-06-18','10-09-18'),(116,'03-23-16','04-13-18'),(117,'04-20-16','02-29-16'),(118,'08-07-16','01-01-17'),(119,'12-31-17','05-01-16'),(120,'11-12-16','03-11-17'),(121,'09-17-17','01-15-18'),(122,'01-17-17','11-18-16'),(123,'09-27-17','04-28-16'),(124,'05-05-18','02-18-17'),(125,'05-09-18','04-06-17'),(126,'09-23-15','04-02-17'),(127,'04-15-17','09-19-18'),(128,'11-15-16','03-02-16'),(129,'07-02-17','12-08-16'),(130,'10-31-17','12-17-16'),(131,'09-20-15','02-27-16'),(132,'02-11-17','11-25-16'),(133,'05-10-17','08-08-17'),(134,'07-04-17','10-08-16'),(135,'10-05-15','03-13-16'),(136,'08-28-15','02-16-16'),(137,'01-03-17','12-17-17'),(138,'06-10-18','01-27-17'),(139,'06-26-17','02-27-17'),(140,'06-27-17','06-17-17'),(141,'04-11-18','04-18-16'),(142,'02-18-18','10-21-15'),(143,'09-17-15','07-17-18'),(144,'03-18-16','11-16-15'),(145,'05-02-16','08-08-18'),(146,'06-18-17','11-30-16'),(147,'03-21-17','08-29-16'),(148,'04-24-17','11-11-15'),(149,'08-20-18','12-15-16'),(150,'10-24-15','08-29-18'),(151,'03-11-16','02-12-16'),(152,'01-20-16','09-24-18'),(153,'04-23-16','08-24-18'),(154,'11-26-16','05-04-18'),(155,'10-07-15','03-26-18'),(156,'06-21-16','09-16-18'),(157,'12-19-17','12-28-16'),(158,'05-01-17','05-17-18'),(159,'07-02-16','07-06-16'),(160,'02-13-17','02-25-16'),(161,'08-14-16','11-04-15'),(162,'10-10-15','09-10-17'),(163,'01-18-16','07-22-16'),(164,'11-12-16','04-08-17'),(165,'07-27-18','03-15-16'),(166,'09-26-15','03-09-16'),(167,'06-09-17','06-02-16'),(168,'08-23-16','04-09-16'),(169,'06-04-17','05-31-18'),(170,'07-07-16','12-21-15'),(171,'04-15-17','05-08-17'),(172,'04-06-16','01-17-17'),(173,'02-26-18','10-14-18'),(174,'10-25-16','12-26-18'),(175,'11-26-16','06-02-16'),(176,'12-18-16','10-08-15'),(177,'01-02-17','10-11-17'),(178,'01-20-18','11-01-15'),(179,'07-27-18','08-28-18'),(180,'07-17-18','08-27-16'),(181,'01-19-17','03-14-18'),(182,'11-03-15','05-30-16'),(183,'02-01-16','04-09-18'),(184,'07-22-16','05-12-17'),(185,'03-29-16','12-24-16'),(186,'10-08-15','04-25-16'),(187,'02-10-17','07-13-17'),(188,'02-28-16','09-28-18'),(189,'12-09-16','08-26-16'),(190,'03-27-17','06-12-16'),(191,'05-03-18','06-03-16'),(192,'11-19-17','11-19-18'),(193,'07-11-16','09-22-17'),(194,'08-25-16','08-03-16'),(195,'05-11-17','10-05-17'),(196,'04-18-18','07-22-18'),(197,'02-27-17','03-07-16'),(198,'10-25-16','06-26-17'),(199,'10-15-15','12-05-15'),(200,'05-16-18','08-29-15');
 
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (2, 2, CAST(N'2015-08-26' AS Date), CAST(N'2015-09-15' AS Date), 60)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (3, 1, CAST(N'2016-02-26' AS Date), CAST(N'2016-03-26' AS Date), 60)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (10, 3, CAST(N'2010-04-02' AS Date), CAST(N'2014-10-11' AS Date), 101)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (11, 4, CAST(N'2011-03-09' AS Date), CAST(N'2014-10-19' AS Date), 436)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (12, 5, CAST(N'2013-07-16' AS Date), CAST(N'2015-02-05' AS Date), 398)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (13, 6, CAST(N'2012-07-05' AS Date), CAST(N'2014-10-08' AS Date), 169)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (14, 7, CAST(N'2012-06-20' AS Date), CAST(N'2014-11-27' AS Date), 491)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (15, 8, CAST(N'2009-10-23' AS Date), CAST(N'2014-11-25' AS Date), 234)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (16, 9, CAST(N'2011-12-21' AS Date), CAST(N'2015-07-26' AS Date), 500)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (17, 10, CAST(N'2012-05-27' AS Date), CAST(N'2014-10-17' AS Date), 392)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (18, 11, CAST(N'2012-08-11' AS Date), CAST(N'2015-05-22' AS Date), 422)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (19, 12, CAST(N'2012-07-11' AS Date), CAST(N'2015-04-20' AS Date), 285)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (20, 13, CAST(N'2012-04-05' AS Date), CAST(N'2015-02-07' AS Date), 64)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (21, 14, CAST(N'2014-07-25' AS Date), CAST(N'2014-12-22' AS Date), 237)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (22, 15, CAST(N'2010-03-31' AS Date), CAST(N'2014-12-16' AS Date), 291)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (23, 16, CAST(N'2013-03-22' AS Date), CAST(N'2015-07-27' AS Date), 236)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (24, 17, CAST(N'2015-05-05' AS Date), CAST(N'2014-09-30' AS Date), 260)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (25, 18, CAST(N'2010-06-20' AS Date), CAST(N'2015-05-02' AS Date), 432)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (26, 19, CAST(N'2015-07-01' AS Date), CAST(N'2014-10-14' AS Date), 50)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (27, 20, CAST(N'2011-09-30' AS Date), CAST(N'2015-02-23' AS Date), 472)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (28, 21, CAST(N'2012-09-28' AS Date), CAST(N'2014-12-11' AS Date), 215)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (29, 22, CAST(N'2011-06-12' AS Date), CAST(N'2015-06-04' AS Date), 105)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (30, 23, CAST(N'2010-12-27' AS Date), CAST(N'2014-11-26' AS Date), 370)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (31, 24, CAST(N'2011-09-30' AS Date), CAST(N'2014-11-18' AS Date), 97)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (32, 25, CAST(N'2013-04-01' AS Date), CAST(N'2014-12-22' AS Date), 193)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (33, 26, CAST(N'2014-04-05' AS Date), CAST(N'2015-06-14' AS Date), 358)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (34, 27, CAST(N'2013-02-08' AS Date), CAST(N'2015-04-19' AS Date), 428)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (35, 28, CAST(N'2010-05-16' AS Date), CAST(N'2014-09-08' AS Date), 429)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (36, 29, CAST(N'2012-03-22' AS Date), CAST(N'2015-02-14' AS Date), 123)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (37, 30, CAST(N'2012-09-15' AS Date), CAST(N'2015-01-29' AS Date), 419)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (38, 31, CAST(N'2015-06-02' AS Date), CAST(N'2015-06-08' AS Date), 53)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (39, 32, CAST(N'2011-06-04' AS Date), CAST(N'2014-11-27' AS Date), 349)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (40, 33, CAST(N'2013-10-25' AS Date), CAST(N'2015-08-20' AS Date), 124)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (41, 34, CAST(N'2014-12-25' AS Date), CAST(N'2014-10-26' AS Date), 312)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (42, 35, CAST(N'2014-10-03' AS Date), CAST(N'2015-03-11' AS Date), 366)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (43, 36, CAST(N'2012-08-05' AS Date), CAST(N'2014-11-29' AS Date), 60)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (44, 37, CAST(N'2013-01-07' AS Date), CAST(N'2014-10-27' AS Date), 329)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (45, 38, CAST(N'2011-03-21' AS Date), CAST(N'2014-12-04' AS Date), 145)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (46, 39, CAST(N'2012-06-25' AS Date), CAST(N'2014-11-03' AS Date), 450)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (47, 40, CAST(N'2010-08-11' AS Date), CAST(N'2015-05-28' AS Date), 149)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (48, 41, CAST(N'2010-01-10' AS Date), CAST(N'2015-04-16' AS Date), 407)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (49, 42, CAST(N'2012-12-22' AS Date), CAST(N'2015-05-16' AS Date), 129)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (50, 43, CAST(N'2014-07-10' AS Date), CAST(N'2015-07-25' AS Date), 192)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (51, 44, CAST(N'2013-10-30' AS Date), CAST(N'2015-02-19' AS Date), 192)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (52, 45, CAST(N'2014-11-10' AS Date), CAST(N'2015-08-06' AS Date), 247)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (53, 46, CAST(N'2013-01-23' AS Date), CAST(N'2015-02-11' AS Date), 209)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (54, 47, CAST(N'2011-09-23' AS Date), CAST(N'2015-06-04' AS Date), 386)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (55, 48, CAST(N'2009-12-06' AS Date), CAST(N'2014-12-28' AS Date), 311)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (56, 49, CAST(N'2011-04-30' AS Date), CAST(N'2015-05-11' AS Date), 321)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (57, 50, CAST(N'2011-11-29' AS Date), CAST(N'2014-12-22' AS Date), 491)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (58, 51, CAST(N'2009-11-03' AS Date), CAST(N'2015-06-11' AS Date), 238)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (59, 52, CAST(N'2013-11-25' AS Date), CAST(N'2015-06-28' AS Date), 80)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (60, 53, CAST(N'2013-09-12' AS Date), CAST(N'2015-03-13' AS Date), 203)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (61, 54, CAST(N'2012-05-25' AS Date), CAST(N'2015-03-19' AS Date), 493)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (62, 55, CAST(N'2010-05-09' AS Date), CAST(N'2015-08-14' AS Date), 124)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (63, 56, CAST(N'2013-10-27' AS Date), CAST(N'2015-04-04' AS Date), 227)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (64, 57, CAST(N'2011-03-12' AS Date), CAST(N'2015-05-27' AS Date), 113)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (65, 58, CAST(N'2010-04-22' AS Date), CAST(N'2015-06-12' AS Date), 88)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (66, 59, CAST(N'2011-03-16' AS Date), CAST(N'2015-04-11' AS Date), 266)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (67, 60, CAST(N'2012-04-04' AS Date), CAST(N'2014-10-03' AS Date), 66)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (68, 61, CAST(N'2010-09-08' AS Date), CAST(N'2015-02-14' AS Date), 288)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (69, 62, CAST(N'2010-09-17' AS Date), CAST(N'2014-10-15' AS Date), 285)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (70, 63, CAST(N'2012-02-26' AS Date), CAST(N'2014-09-02' AS Date), 103)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (71, 64, CAST(N'2014-11-29' AS Date), CAST(N'2015-04-27' AS Date), 268)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (72, 65, CAST(N'2012-07-24' AS Date), CAST(N'2015-08-08' AS Date), 498)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (73, 66, CAST(N'2010-03-05' AS Date), CAST(N'2015-08-20' AS Date), 165)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (74, 67, CAST(N'2010-03-08' AS Date), CAST(N'2015-04-21' AS Date), 228)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (75, 68, CAST(N'2010-02-06' AS Date), CAST(N'2015-02-19' AS Date), 343)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (76, 69, CAST(N'2014-12-29' AS Date), CAST(N'2015-02-25' AS Date), 210)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (77, 70, CAST(N'2013-03-06' AS Date), CAST(N'2014-12-10' AS Date), 395)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (78, 71, CAST(N'2012-11-12' AS Date), CAST(N'2015-05-17' AS Date), 428)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (79, 72, CAST(N'2012-09-07' AS Date), CAST(N'2014-10-10' AS Date), 55)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (80, 73, CAST(N'2013-06-10' AS Date), CAST(N'2015-06-14' AS Date), 354)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (81, 74, CAST(N'2010-11-23' AS Date), CAST(N'2014-09-15' AS Date), 278)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (82, 75, CAST(N'2013-06-22' AS Date), CAST(N'2015-03-07' AS Date), 456)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (83, 76, CAST(N'2011-03-09' AS Date), CAST(N'2015-08-01' AS Date), 110)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (84, 77, CAST(N'2014-10-28' AS Date), CAST(N'2015-03-24' AS Date), 316)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (85, 78, CAST(N'2013-01-23' AS Date), CAST(N'2015-06-10' AS Date), 343)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (86, 79, CAST(N'2010-03-27' AS Date), CAST(N'2015-07-22' AS Date), 286)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (87, 80, CAST(N'2012-05-15' AS Date), CAST(N'2014-11-17' AS Date), 89)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (88, 81, CAST(N'2010-08-02' AS Date), CAST(N'2015-02-17' AS Date), 473)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (89, 82, CAST(N'2014-05-02' AS Date), CAST(N'2015-06-12' AS Date), 487)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (90, 83, CAST(N'2011-04-15' AS Date), CAST(N'2014-12-10' AS Date), 356)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (91, 84, CAST(N'2010-05-20' AS Date), CAST(N'2015-08-16' AS Date), 136)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (92, 85, CAST(N'2011-10-24' AS Date), CAST(N'2014-12-19' AS Date), 328)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (93, 86, CAST(N'2010-04-23' AS Date), CAST(N'2014-09-29' AS Date), 280)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (94, 87, CAST(N'2012-07-31' AS Date), CAST(N'2014-08-26' AS Date), 404)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (95, 88, CAST(N'2014-06-06' AS Date), CAST(N'2015-02-03' AS Date), 389)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (96, 89, CAST(N'2010-05-21' AS Date), CAST(N'2015-02-12' AS Date), 66)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (97, 90, CAST(N'2013-11-01' AS Date), CAST(N'2015-01-01' AS Date), 86)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (98, 91, CAST(N'2015-05-21' AS Date), CAST(N'2015-04-21' AS Date), 379)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (99, 92, CAST(N'2011-09-18' AS Date), CAST(N'2015-03-15' AS Date), 307)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (100, 93, CAST(N'2009-11-27' AS Date), CAST(N'2015-08-03' AS Date), 474)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (101, 94, CAST(N'2012-05-27' AS Date), CAST(N'2015-05-16' AS Date), 362)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (102, 95, CAST(N'2013-11-17' AS Date), CAST(N'2015-04-04' AS Date), 167)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (103, 96, CAST(N'2014-10-27' AS Date), CAST(N'2015-06-06' AS Date), 302)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (104, 97, CAST(N'2014-01-06' AS Date), CAST(N'2015-02-08' AS Date), 397)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (105, 98, CAST(N'2012-05-06' AS Date), CAST(N'2015-03-01' AS Date), 154)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (106, 99, CAST(N'2013-01-28' AS Date), CAST(N'2015-04-09' AS Date), 105)
-GO
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (107, 100, CAST(N'2014-03-06' AS Date), CAST(N'2015-07-28' AS Date), 258)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (108, 101, CAST(N'2012-05-17' AS Date), CAST(N'2014-09-06' AS Date), 287)
-INSERT [dbo].[Prix] ([IdPrix], [IdProduit], [DateDebut], [DateFin], [Montant]) VALUES (109, 102, CAST(N'2011-07-22' AS Date), CAST(N'2015-06-29' AS Date), 397)
-SET IDENTITY_INSERT [dbo].[Prix] OFF
+--SET IDENTITY_INSERT [dbo].[Prix] OFF
 
 
 

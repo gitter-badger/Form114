@@ -4,9 +4,13 @@
     ViewBag.Title = "Welcome to Air R'n'B";
 }
 
-<div class="img">
-    <img src="~/Images/Index-big.jpg" />
+
+
+<div class="img0">
+    <img src="~/Images/Index-big.jpg" class="imageIndex" />
 </div>
+
+
 
 <fieldset>
     <legend>Produits Phares</legend>
@@ -15,7 +19,9 @@
 <div class="row">
     @foreach (var item in Model)
     {
+
         <div class="col-sm-4">@Html.Action("Miniature", "Produit", new { id = item.IdProduit })</div>
+
     }
 </div>
 

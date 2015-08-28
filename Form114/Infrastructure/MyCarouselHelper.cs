@@ -8,36 +8,40 @@ namespace Form114.Infrastructure
 {
     public static class MyCarouselHelper
     {
-        public static MvcHtmlString MyCarousel(this HtmlHelper self, List<string> listePhotos)
+        public static MvcHtmlString MyCarousel(this HtmlHelper self, List<string> listePhotos,int id, string cadre, string MonImage)
         {
+            Random rd = new Random();
+            int valeur1 = rd.Next();
+            valeur1 = rd.Next();
             var str = "";
-            str += "<div id=\"myCarousel\" class=\"carousel slide\" data-ride=\"carousel\">";
+            str += "<div id=\"myCarousel"+Convert.ToString(id)+"\" class=\"carousel slide\" data-ride=\"carousel\">";
             str += "<div class=\"carousel-inner\" role=\"listbox\">";
             for (int i = 0; i < listePhotos.Count(); i++ )
             {
                 if (i == 0)
                 {
                     str += "<div class=\"item active\">";
-                    str += "<div class=\"cadre\">";
-                    str += "<img src=\"/Images/"+listePhotos[i].Trim()+"\" alt=\"Pas de photo\" class=\"MonImage\"/>";
+                    str += "<div class=\""+cadre+"\">";
+                    str += "<img src=\"/Images/"+listePhotos[i].Trim()+"\" alt=\"Pas de photo\" class=\""+MonImage+"\"/>";
                     str += "</div>";
                     str += "</div>";
                 }
                 else
                 {
                     str += "<div class=\"item\">";
-                    str += "<div class=\"cadre\">";
-                    str += "<img src=\"/Images/" + listePhotos[i].Trim() + "\" alt=\"Pas photo\" class=\"MonImage\"/>";
+                    str += "<div class=\""+cadre+"\">";
+                    str += "<img src=\"/Images/" + listePhotos[i].Trim() + "\" alt=\"Pas photo\" class=\""+MonImage+"\"/>";
                     str += "</div>";
                     str += "</div>";
                 }
             }
+            
             str += "</div>";
-            str += "<a class=\"left carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"prev\">";
+            str += "<a class=\"left carousel-control\" href=\"#myCarousel"+Convert.ToString(id)+"\" role=\"button\" data-slide=\"prev\">";
             str += "<span class=\"glyphicon glyphicon-chevron-left\" aria-hidden=\"true\"></span>";
             str += "<span class=\"sr-only\">Previous</span>";
             str += "</a>";
-            str += "<a class=\"right carousel-control\" href=\"#myCarousel\" role=\"button\" data-slide=\"next\">";
+            str += "<a class=\"right carousel-control\" href=\"#myCarousel"+Convert.ToString(id)+"\" role=\"button\" data-slide=\"next\">";
             str += "<span class=\"glyphicon glyphicon-chevron-right\" aria-hidden=\"true\"></span>";
             str += "<span class=\"sr-only\">Next</span>";
             str += "</a></div>";

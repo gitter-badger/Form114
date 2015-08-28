@@ -12,11 +12,13 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Photos
+    public partial class Promos
     {
-        public int IdPhoto { get; set; }
-        public int IdProduit { get; set; }
-        public string Path { get; set; }
+        public int IdPromo { get; set; }
+        public Nullable<int> IdProduit { get; set; }
+        public int Promo { get; set; }
+        public System.DateTime DateDeb { get; set; }
+        public System.DateTime DateFin { get; set; }
     
         public virtual Produits Produits { get; set; }
     }

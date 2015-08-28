@@ -12,11 +12,11 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Photos
+    public partial class ProduitTracking
     {
-        public int IdPhoto { get; set; }
+        public int IdPT { get; set; }
+        public System.DateTime DatePT { get; set; }
         public int IdProduit { get; set; }
-        public string Path { get; set; }
     
         public virtual Produits Produits { get; set; }
     }
