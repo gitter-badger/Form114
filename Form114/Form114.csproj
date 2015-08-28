@@ -175,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
     <Compile Include="Areas\Areas\Controllers\ProduitsController.cs" />
+    <Compile Include="Areas\Areas\Models\ProduitsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Form114Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,12 +212,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DateRangePicker\daterangepicker-kv.css" />
+    <Content Include="Content\DateRangePicker\daterangepicker-kv.min.css" />
+    <Content Include="Content\DateRangePicker\daterangepicker.css" />
+    <Content Include="Content\DateRangePicker\daterangepicker.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui.theme.min.css" />
+    <Content Include="Content\jquery.comiseo.daterangepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -247,6 +253,11 @@
     <Content Include="Areas\Areas\Views\Produits\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\Produits\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\DateRangePicker\daterangepicker.js" />
+    <Content Include="Scripts\DateRangePicker\daterangepicker.min.js" />
+    <Content Include="Scripts\DateRangePicker\fr.js" />
+    <Content Include="Scripts\DateRangePicker\moment.js" />
+    <Content Include="Scripts\DateRangePicker\moment.min.js" />
     <Content Include="Scripts\Details\AfficherPrix.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -254,11 +265,17 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.comiseo.daterangepicker.js" />
+    <Content Include="Scripts\jquery.comiseo.daterangepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Search\Datepicker.js" />
@@ -310,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Areas\Models\" />
     <Folder Include="Views\Form114\" />
   </ItemGroup>
   <ItemGroup>

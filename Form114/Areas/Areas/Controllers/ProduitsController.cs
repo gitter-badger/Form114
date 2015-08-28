@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer.Models;
+using System.IO;
 
 namespace Form114.Areas.Areas.Controllers
 {
@@ -47,12 +48,48 @@ namespace Form114.Areas.Areas.Controllers
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduit,IdVille,NbPlaces,Adresse,Description")] Produits produits)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "IdProduit,IdVille,NbPlaces,Adresse,Description")] Produits produits, double Prix, HttpPostedFileBase postedFile, string e1)
         {
+            if (e1 == null)
+            {
+                return RedirectToAction("Index");
+            }
+            if (postedFile == null || postedFile.ContentLength <= 0)
+            {
+                return RedirectToAction("Index");
+            }
+            var fileName = Path.GetFileName(postedFile.FileName);
+
+            if(fileName == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var path = Path.Combine(Server.MapPath("~/Images/"),fileName);
+
+            postedFile.SaveAs(path);
+            string[] tab = e1.Trim().Split('-');
             if (ModelState.IsValid)
             {
+
                 db.Produits.Add(produits);
+                db.SaveChanges();
+                var prix = new Prix()
+                {
+                    IdProduit = produits.IdProduit,
+                    Montant = (int)Prix,
+                    DateDebut = Convert.ToDateTime(tab[0]),
+                    DateFin = Convert.ToDateTime(tab[1])
+                    
+                };
+                db.Prix.Add(prix);
+                var photo = new Photos
+                {
+                    IdProduit = produits.IdProduit,
+                    Path = path
+                };
+                db.Photos.Add(photo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
