@@ -4,15 +4,7 @@
     ViewBag.Title = "Result";
 }
 
-<h2>Result</h2>
-
-@*<div class="row">*@
-@*@foreach (var item in @Model)
-    {
-        <p>@item.IdProduit</p>
-        <p>@item.Prix</p>
-        <p>@item.Adresse</p>
-    }*@
+<h2>Resultats de votre recherche</h2>
 
 <table class="table table-hover table-striped table-bordered table-responsive">
     <thead>
@@ -21,27 +13,21 @@
             <th>nombre de chambre</th>
             <th>adresse</th>
             <th>Prix</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-
+            @{var i = item.Prix.Count() != 0 ? item.Prix.First().Montant : 0;}
             <tr>
                 <td>@item.Villes.name</td>
                 <td>@item.NbPlaces</td>
                 <td>@item.Adresse</td>
-                <td>@item.Prix.FirstOrDefault().Montant</td>
-                <td><a href="#">Réserver</a></td>
+                <td>@i</td>
+                <td>@Html.ActionLink("Détails","Details",new { controller = "Produit", id = item.IdProduit })</td>
             </tr>
-
         }
     </tbody>
 
 </table>
-
-@*@for (int i = 0; i < ViewBag.listeChoisi.Length; i++)
-    {
-        @ViewBag.listeChoisi[i]
-    }*@
-@*</div>*@
