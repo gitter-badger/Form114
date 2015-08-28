@@ -44,10 +44,46 @@ textarea {
     margin: 0px auto;
 }
 
+div.img0 {
+    height : 500px;
+    max-height : 100%;
+    max-width : 100%;
+}
+
 div.img {
-    height: 400px;
+    height : 100%;
     text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageIndex {
+    height : 100%;
+    width : 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.imgind{
+    height : 185px;
+    max-height : 100%;
+    max-width : 100%;
+}
+
+.imageIndex1 {
+    height : 100%;
+    width : 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }	
+
+div.img1{
+    height: 250px;
+    text-align: center; 
+}
 
 div.img img {
     display: inline;
@@ -55,6 +91,7 @@ div.img img {
     margin: 0px;
     border: 1px solid #ffffff;
 }
+
 
 div.img a:hover img {
     border: 1px solid #0000ff;
@@ -76,3 +113,10 @@ fieldset {
     margin-left: auto;
     margin-right: auto;
 }
+
+.cadre1{
+    height : 100px;
+    max-height : 100%;
+    max-width : 100%;
+}
+

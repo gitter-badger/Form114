@@ -1,5 +1,5 @@
 ﻿@model Form114.Models.ProduitViewModel
-
+@using Form114.Infrastructure
 @{
     var s = "place";
     if (@Model.NbPlaces > 1)
@@ -7,8 +7,9 @@
         s += 's';
     }
 }
-<div class="img">
+<div class="img1">
     @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
+    @Html.MyCarousel(Model.ListPhotos, Model.IdProduit,"cadre1","MonImage")
     <p>ID : @Model.IdProduit</p>
     <p>@Model.NbPlaces @s</p>
     <p>@Model.Adresse</p>
