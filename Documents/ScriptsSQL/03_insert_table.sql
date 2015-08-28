@@ -26,16 +26,7 @@ if object_id('Identites') is not null
 if object_id('Adresses') is not null
 	drop table Adresses	
 
-if object_id('AspNetUserClaims') is not null
-	drop table AspNetUserClaims
-if object_id('AspNetUserLogins') is not null
-	drop table AspNetUserLogins
-if object_id('AspNetUserRoles') is not null
-	drop table AspNetUserRoles
-if object_id('AspNetUsers') is not null
-	drop table AspNetUsers
-if object_id('AspNetRoles') is not null
-	drop table AspNetRoles
+
 	
 GO
 
@@ -177,96 +168,6 @@ ALTER TABLE [dbo].[Adresses] ADD  CONSTRAINT [Idx_Adresse_0] UNIQUE NONCLUSTERED
 	[Ville] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
-GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 8/26/2015 1:55:03 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AspNetRoles](
-	[Id] [nvarchar](128) NOT NULL,
-	[Name] [nvarchar](256) NOT NULL,
- CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 8/26/2015 1:55:03 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AspNetUserClaims](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [nvarchar](128) NOT NULL,
-	[ClaimType] [nvarchar](max) NULL,
-	[ClaimValue] [nvarchar](max) NULL,
- CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 8/26/2015 1:55:03 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AspNetUserLogins](
-	[LoginProvider] [nvarchar](128) NOT NULL,
-	[ProviderKey] [nvarchar](128) NOT NULL,
-	[UserId] [nvarchar](128) NOT NULL,
- CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED 
-(
-	[LoginProvider] ASC,
-	[ProviderKey] ASC,
-	[UserId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 8/26/2015 1:55:03 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AspNetUserRoles](
-	[UserId] [nvarchar](128) NOT NULL,
-	[RoleId] [nvarchar](128) NOT NULL,
- CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
-(
-	[UserId] ASC,
-	[RoleId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 8/26/2015 1:55:03 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[AspNetUsers](
-	[Id] [nvarchar](128) NOT NULL,
-	[Email] [nvarchar](256) NULL,
-	[EmailConfirmed] [bit] NOT NULL,
-	[PasswordHash] [nvarchar](max) NULL,
-	[SecurityStamp] [nvarchar](max) NULL,
-	[PhoneNumber] [nvarchar](max) NULL,
-	[PhoneNumberConfirmed] [bit] NOT NULL,
-	[TwoFactorEnabled] [bit] NOT NULL,
-	[LockoutEndDateUtc] [datetime] NULL,
-	[LockoutEnabled] [bit] NOT NULL,
-	[AccessFailedCount] [int] NOT NULL,
-	[UserName] [nvarchar](256) NOT NULL,
- CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
 CREATE TABLE Reservations
@@ -309,34 +210,11 @@ PRIMARY KEY CLUSTERED
 
 GO
 SET ANSI_PADDING OFF
-GO
 
 GO
-INSERT [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'65e2fafa-96fd-4b64-a8b5-5c268fce2920', N'matthieu@gmail.com', 0, N'AKhCMfSv2ojt2bOeh0RgpYPMTLU4nM39z5rf2x75jJ3pwSSduWaFDXv6iUK2F018fg==', N'271e85c1-c52b-46bc-b9d8-614ed3a79382', NULL, 0, 0, NULL, 1, 0, N'matthieu@gmail.com')
-ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
-GO
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[AspNetRoles] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
-GO
-ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
-REFERENCES [dbo].[AspNetUsers] ([Id])
-ON DELETE CASCADE
-GO
-ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
-GO
+IF OBJECT_ID('Fk_Identites_AspNetUsers', 'F') IS NOT NULL
+ALTER TABLE [dbo].[Identites]  DROP CONSTRAINT [Fk_Identites_AspNetUsers];
+
 ALTER TABLE [dbo].[Identites]  WITH CHECK ADD  CONSTRAINT [Fk_Identites_AspNetUsers] FOREIGN KEY([IdUser])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
@@ -808,3 +686,9 @@ SET IDENTITY_INSERT [dbo].[Adresses] ON
 
 INSERT [dbo].[Adresses] ([IdAdresse], [Ligne1], [Ligne2], [CodePostal], [Ville]) VALUES (1, N'2 rue tralala', NULL, N'75012', N'Paris')
 SET IDENTITY_INSERT [dbo].[Adresses] OFF
+
+
+INSERT INTO ProduitTracking([DatePT],[IdProduit]) VALUES('06-28-15',315),('07-12-15',244),('08-12-15',326),('08-08-15',230),('08-27-15',218),('07-01-15',259),('07-09-15',72),('06-29-15',87),('08-24-15',13),('06-21-15',356),('07-27-15',229),('08-25-15',33),('07-07-15',177),('06-20-15',97),('06-23-15',168),('07-30-15',170),('07-25-15',73),('07-18-15',11),('08-23-15',10),('08-23-15',68),('07-03-15',321),('08-18-15',328),('06-19-15',63),('07-20-15',252),('07-26-15',275),('08-07-15',305),('08-08-15',39),('07-02-15',25),('07-04-15',208),('07-07-15',311),('07-31-15',326),('08-06-15',21),('08-25-15',390),('07-03-15',18),('08-01-15',354),('07-10-15',73),('06-16-15',400),('07-20-15',192),('08-16-15',292),('08-08-15',23),('08-17-15',277),('06-23-15',333),('06-24-15',243),('06-20-15',346),('07-27-15',317),('08-12-15',361),('08-12-15',14),('07-26-15',349),('06-20-15',171),('08-01-15',372),('07-22-15',47),('07-06-15',252),('06-28-15',69),('08-19-15',348),('06-30-15',220),('08-07-15',98),('07-30-15',2),('08-08-15',32),('07-15-15',395),('08-07-15',257),('08-11-15',359),('06-30-15',319),('06-30-15',194),('07-19-15',356),('07-11-15',388),('06-23-15',21),('06-20-15',164),('07-19-15',201),('07-18-15',346),('07-10-15',161),('07-19-15',384),('07-09-15',253),('07-13-15',97),('08-21-15',79),('07-12-15',77),('06-16-15',394),('07-09-15',21),('06-30-15',276),('06-24-15',245),('07-22-15',263),('06-19-15',137),('07-07-15',51),('08-26-15',299),('07-30-15',378),('08-07-15',329),('07-01-15',402),('07-28-15',371),('07-23-15',21),('07-25-15',29),('08-15-15',390),('08-02-15',280),('07-26-15',276),('08-07-15',91),('08-25-15',31),('08-10-15',242),('06-18-15',52),('07-30-15',124),('06-20-15',371),('07-26-15',312),('07-22-15',312);
+
+INSERT INTO Promos([IdProduit],[Promo],[DateDeb],[DateFin]) VALUES(371,5,'08-27-16','09-23-15'),(99,10,'09-01-15','05-14-16'),(207,15,'06-04-16','06-09-16'),(35,20,'02-09-16','09-27-15'),(251,25,'11-15-15','03-12-16'),(190,30,'07-23-16','03-26-16'),(17,35,'08-27-16','07-22-16'),(151,40,'02-05-16','03-31-16'),(168,45,'03-16-16','02-01-16'),(149,50,'07-01-16','10-24-15'),(167,55,'06-21-16','09-06-16'),(4,60,'04-11-16','03-12-16'),(134,65,'05-20-16','10-28-15'),(284,70,'01-25-16','10-25-15'),(377,75,'08-20-16','09-18-15'),(75,80,'03-06-16','07-03-16'),(17,85,'05-21-16','11-22-15'),(385,90,'11-04-15','05-11-16'),(372,95,'08-21-16','01-31-16'),(162,100,'11-02-15','05-20-16'),(218,105,'04-30-16','06-03-16'),(310,110,'06-06-16','06-23-16'),(328,115,'11-06-15','01-07-16'),(364,120,'10-28-15','11-09-15'),(212,125,'03-07-16','10-04-15'),(278,130,'06-08-16','11-24-15'),(351,135,'01-13-16','09-01-16'),(242,140,'08-04-16','05-28-16'),(65,145,'07-29-16','02-15-16'),(10,150,'02-04-16','04-01-16'),(165,155,'06-01-16','03-28-16'),(8,160,'08-31-15','05-14-16'),(55,165,'05-26-16','09-18-15'),(351,170,'10-18-15','06-23-16'),(246,175,'09-24-15','01-25-16'),(145,180,'04-20-16','04-29-16'),(57,185,'11-03-15','05-10-16'),(253,190,'02-28-16','10-19-15'),(5,195,'08-22-16','03-15-16'),(125,200,'06-01-16','03-24-16'),(251,205,'01-12-16','03-23-16'),(368,210,'05-04-16','11-15-15'),(37,215,'08-22-16','11-27-15'),(314,220,'09-23-15','10-03-15'),(80,225,'11-19-15','09-13-16'),(64,230,'09-23-15','04-07-16'),(326,235,'07-16-16','09-15-16'),(398,240,'04-14-16','05-10-16'),(229,245,'11-09-15','10-01-15'),(243,250,'08-11-16','01-26-16'),(214,255,'05-23-16','12-17-15'),(228,260,'07-17-16','04-06-16'),(228,265,'06-18-16','05-07-16'),(41,270,'11-17-15','05-24-16'),(357,275,'09-11-15','06-12-16'),(360,280,'04-13-16','07-17-16'),(19,285,'09-07-15','10-12-15'),(289,290,'09-05-15','12-02-15'),(28,295,'07-07-16','06-12-16'),(298,300,'06-23-16','11-03-15'),(169,305,'05-26-16','08-20-16'),(371,310,'05-01-16','09-10-16'),(130,315,'03-16-16','09-16-16'),(139,320,'10-27-15','02-26-16'),(401,325,'08-28-15','08-13-16'),(404,330,'03-13-16','05-22-16'),(359,335,'11-05-15','01-19-16'),(25,340,'04-24-16','04-02-16'),(176,345,'01-13-16','12-04-15'),(210,350,'03-30-16','03-31-16'),(162,355,'11-24-15','11-22-15'),(68,360,'06-06-16','09-21-16'),(27,365,'04-20-16','08-23-16'),(29,370,'03-23-16','04-16-16'),(37,375,'09-06-15','09-07-16'),(390,380,'07-05-16','03-28-16'),(156,385,'10-25-15','02-03-16'),(218,390,'10-05-15','10-24-15'),(390,395,'08-02-16','12-07-15'),(51,400,'06-02-16','11-03-15'),(113,405,'03-17-16','12-30-15'),(158,410,'12-19-15','10-25-15'),(33,415,'01-08-16','12-17-15'),(21,420,'06-22-16','07-24-16'),(221,425,'07-20-16','05-05-16'),(383,430,'05-24-16','11-27-15'),(111,435,'07-24-16','02-21-16'),(338,440,'04-12-16','03-27-16'),(403,445,'07-29-16','05-24-16'),(116,450,'10-25-15','04-19-16'),(124,455,'07-22-16','11-26-15'),(91,460,'08-23-16','09-19-16'),(286,465,'09-27-15','10-04-15'),(166,470,'12-01-15','01-11-16'),(216,475,'06-03-16','09-15-16'),(301,480,'08-12-16','12-02-15'),(224,485,'01-03-16','09-24-15'),(228,490,'08-10-16','01-10-16'),(346,495,'09-17-15','01-30-16'),(37,500,'07-22-16','07-23-16');
+
