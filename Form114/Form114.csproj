@@ -199,6 +199,7 @@
     <Compile Include="Infrastructure\SearchProducts\Options\SearchOptionVille.cs" />
     <Compile Include="Infrastructure\SearchProducts\Search.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProduitViewModel.cs" />
@@ -215,6 +216,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Comments\images\ui-anim_basic_16x16.gif" />
+    <Content Include="Content\Comments\images\user_blank_picture.png" />
+    <Content Include="Content\Comments\jquery.comment.css" />
     <Content Include="Content\DateRangePicker\daterangepicker-kv.css" />
     <Content Include="Content\DateRangePicker\daterangepicker-kv.min.css" />
     <Content Include="Content\DateRangePicker\daterangepicker.css" />
@@ -257,6 +261,10 @@
     <Content Include="Areas\Areas\Views\Produits\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\Produits\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\Comments\Comment.js" />
+    <Content Include="Scripts\Comments\jquery.autogrow-textarea.js" />
+    <Content Include="Scripts\Comments\jquery.comment.js" />
+    <Content Include="Scripts\Comments\jquery.timeago.js" />
     <Content Include="Scripts\DateRangePicker\daterangepicker.js" />
     <Content Include="Scripts\DateRangePicker\daterangepicker.min.js" />
     <Content Include="Scripts\DateRangePicker\fr.js" />
