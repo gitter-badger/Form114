@@ -1,21 +1,12 @@
 ﻿@model int[]
 
 <div class="panel panel-info">
-    <div class="panel-heading">
-        <strong>Nombre d'inscrits et de chambres à louer</strong>
-    </div>
-    @{
-        var room = Model[0];
-        var user = Model[1];
-        <text><div class="panel-body">
-                <ul>
-                    <li>
-                        @room Chambres à louer!
-                    </li>
-                    <li>
-                        @user Utilisateurs inscrits!
-                    </li>
-                </ul>
-            </div> </text>
-    }
+    <strong>
+        @{
+            var room = Model[0];
+            var user = Model[1];
+            <text> Nous avons @room chambres à louer et @user utilisateurs inscrits!
+            </text>
+        }
+    </strong>
 </div>

@@ -1,4 +1,9 @@
-﻿body {
+﻿* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -8,6 +13,17 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+div#footer {
+    background: none;
+	overflow:hidden;
+	position:absolute;
+	width:70%;
+	height:50px;
+	bottom:0;
+	padding:0;
+}
+html>body #footer {position: fixed}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 

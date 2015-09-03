@@ -43,14 +43,11 @@
 
                 @RenderBody()
             </div>
-            <div class="col-lg-2">
-                @Html.Action("Comptage", "Home")
-            </div>
         </div>
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div id="footer">
+            <p class ="text-muted">@Html.Action("Comptage", "Home")</p>
+</div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
