@@ -120,3 +120,33 @@ fieldset {
     max-width : 100%;
 }
 
+.im{
+    background-image:url(Lisbonne.jpg);
+}
+
+.catalog{
+    height :200px;
+    max-height :100%;
+    max-width : 100%;
+}
+
+.catalog1{
+    height : 100%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.details{
+    height : 180px;
+    width : 240px;
+}
+
+.details1{
+    height : 100%;
+    width : 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

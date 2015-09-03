@@ -19,7 +19,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            @{var i = item.Prix.Count() != 0 ? item.Prix.First().Montant : 0;}
+            var i = item.Prix.Count() != 0 ? item.Prix.First().Montant : 0;
             <tr>
                 <td>@item.Villes.name</td>
                 <td>@item.NbPlaces</td>

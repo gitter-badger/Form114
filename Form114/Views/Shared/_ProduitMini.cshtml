@@ -7,10 +7,22 @@
         s += 's';
     }
 }
-<div class="img1">
-    @*<li><img src="/Images/@Model.ListPhotos.FirstOrDefault()" alt="Pas d'image" /></li>*@
-    @Html.MyCarousel(Model.ListPhotos, Model.IdProduit,"cadre1","MonImage")
-    <p>ID : <div class="idProduit">@Model.IdProduit</div></p>
-    <p>@Model.NbPlaces @s</p>
-    <p>@Model.Adresse</p>
+
+@section styles{
+    <link href="~/Content/BootFlat/bootflat.css" rel="stylesheet" />
+}
+
+<div class="details">
+    <div class="details1">
+        <div class="thumbnail details1">
+
+            @Html.MyCarousel(Model.ListPhotos, Model.IdProduit, "cadre1", "MonImage")
+            <div class="caption text-center">
+                <p>@Model.Adresse...A Completer</p>
+                <input type="hidden" class="idProduit" value="@Model.IdProduit" />
+                @*<p>ID : <div class="idProduit">@Model.IdProduit</div></p>*@
+
+            </div>
+        </div>
+    </div>
 </div>

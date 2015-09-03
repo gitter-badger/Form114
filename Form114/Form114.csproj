@@ -208,6 +208,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BootFlat\bootflat.css" />
+    <Content Include="Content\BootFlat\bootflat.min.css" />
     <Content Include="Content\bootstrap-chosen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -286,6 +288,7 @@
     <Content Include="Scripts\Search\Region.js" />
     <Content Include="Scripts\Search\Slider.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Home\Lisbonne.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

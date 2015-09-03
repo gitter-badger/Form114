@@ -8,6 +8,12 @@
     <script src="~/Scripts/Home/VuesPartielles.js"></script>
 }
 
+@section styles{
+    <link type="text/css" rel="stylesheet" media="all" href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-858f47868a8d0e12dfa7eb60fa84fb17.css" />
+    <link type="text/css" rel="stylesheet" media="screen" href="https://a2.muscache.com/airbnb/static/p1/main-5cb7d688449bd133cdab91df9172776f.css" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
 <div class="img0">
     <img src="~/Images/Index-big.jpg" class="imageIndex" />
 
@@ -27,26 +33,21 @@
 
     }
 </div>
+<br />
+<br />
+@*<br />
+<br />*@
 
-@*<div class="row">
-    @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
-    {
-        var s = "/Images/" + @item.name + ".jpg";
-        <div class="panel panel-info col-lg-6">
-            <div class="panel-heading">
-                <strong>Voyagez en @Html.ActionLink("" + item.name, "Index", new { id = item.name }) </strong>
-            </div>
-            <div class="panel-body">
-                <img src="@s" height="180" width="280"/>
-            </div>
-        </div>
 
-    }
-</div>*@
 
 <div class="row">
+
     @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
     {
-        @Html.Action("Catalog", "Home", new { id = item.idRegion})
+                <div class="col-xs-4">
+                    @Html.Action("Catalog", "Home", new { id = item.idRegion })
+                </div>
     }
+
 </div>
+

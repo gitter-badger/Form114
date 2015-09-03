@@ -5,18 +5,38 @@
 }
 
 <div class="FormSubmitButton">
-    <div class="panel panel-info col-lg-6">
-        @using (Html.BeginForm("ResultRegion", "Search", FormMethod.Post, new { id = "IdFormPagination" }))
-        {
-            <input type="hidden" id="IdRegion" name="id" value="@Model.idRegion" />
-            <div class="panel-heading">
-                <strong>Voyagez en <a href="#" class="">@Model.name</a> @*, "Index", new { id = Model.name })*@ </strong>
-            </div>
-            <div class="panel-body">
-                <div class="imgind">
-                    <img src=@strImage height="180" width="280" class="imageIndex1" />
+
+    @using (Html.BeginForm("ResultRegion", "Search", FormMethod.Post, new { id = "IdFormPagination" }))
+    {
+        <input type="hidden" id="IdRegion" name="id" value="@Model.idRegion" />
+
+        <div class=" rm-padding-sm">
+            <div class="catalog">
+
+                <div class="discovery-card rm-padding-sm row-space-4 darken-on-hover catalog1" style="background-image : url(@strImage)">
+                    <a class="link-reset" href="#">
+                        <div class="va-container va-container-v va-container-h">
+                            <div class="va-middle text-center text-contrast">
+                                <div class="h3">
+                                    @Model.name
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
                 </div>
             </div>
-        }
-    </div>
+
+        </div>
+
+
+        @*<div class="panel-heading">
+            <strong>Voyagez en <a href="#" class="">@Model.name</a> @*, "Index", new { id = Model.name })*@ @*</strong>
+                </div>
+                <div class="panel-body">
+                    <div class="imgind">
+                        <img src=@strImage height="180" width="280" class="imageIndex1" />
+                    </div>
+                </div>*@
+    }
 </div>

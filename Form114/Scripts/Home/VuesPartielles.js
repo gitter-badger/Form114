@@ -1,6 +1,6 @@
 ﻿$(function () {
     $('.img1').click(function () {
-        var s = "../Produit/Details/" + $(this).children('.idProduit').html()
+        var s = "../Produit/Details/" + $(this).find('.idProduit').html()
         window.location = s
     })
 
