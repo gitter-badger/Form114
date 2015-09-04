@@ -208,6 +208,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\BootFlat\bootflat.css" />
     <Content Include="Content\BootFlat\bootflat.min.css" />
     <Content Include="Content\bootstrap-chosen.css" />
@@ -215,10 +216,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\creative.css" />
     <Content Include="Content\DateRangePicker\daterangepicker-kv.css" />
     <Content Include="Content\DateRangePicker\daterangepicker-kv.min.css" />
     <Content Include="Content\DateRangePicker\daterangepicker.css" />
     <Content Include="Content\DateRangePicker\daterangepicker.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\header.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
@@ -226,6 +230,10 @@
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui.theme.min.css" />
     <Content Include="Content\jquery.comiseo.daterangepicker.css" />
+    <Content Include="Content\TemplateUsed\animate.min.css" />
+    <Content Include="Content\TemplateUsed\creative.css" />
+    <Content Include="Content\TemplateUsed\font-awesome.min.css" />
+    <Content Include="Content\TemplateUsed\header.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -1,7 +1,7 @@
 ﻿@model List<DataLayer.Models.Produits>
 
 @{
-    ViewBag.Title = "Welcome to Air R'n'B";
+    ViewBag.Title = "Welcome to AiR'n'B";
 }
 
 @section scripts {
@@ -9,45 +9,52 @@
 }
 
 @section styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" media="all" href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-858f47868a8d0e12dfa7eb60fa84fb17.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="https://a2.muscache.com/airbnb/static/p1/main-5cb7d688449bd133cdab91df9172776f.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    @*<link href="~/Content/creative.css" rel="stylesheet" />
+        <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/Content/animate.min.css" rel="stylesheet" />*@
 }
 
-<div class="img0">
-    <img src="~/Images/Index-big.jpg" class="imageIndex" />
-
+<div id="head">
+    <div id="cont">
+        <div id="in">
+            <h1>Faites comme chez vous!</h1>
+            <hr>
+            <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+        </div>
+    </div>
 </div>
 
+<div style="background-color : #89C4F4">
+    <div class="row center-block">
+        @foreach (var item in Model)
+        {
 
+            <div class="col-sm-4">@Html.Action("Miniature", "Produit", new { id = item.IdProduit })</div>
 
-<fieldset>
-    <legend>Produits Phares</legend>
-</fieldset>
-
-<div class="row">
-    @foreach (var item in Model)
-    {
-
-        <div class="col-sm-4">@Html.Action("Miniature", "Produit", new { id = item.IdProduit })</div>
-
-    }
+        }
+    </div>
 </div>
 <br />
-<br />
-@*<br />
-<br />*@
 
 
 
-<div class="row">
+<div style="background-color : #59ABE3">
+    <div class="row">
 
-    @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
-    {
-                <div class="col-xs-4">
-                    @Html.Action("Catalog", "Home", new { id = item.idRegion })
-                </div>
-    }
+        @foreach (var item in (List<DataLayer.Models.Regions>)ViewBag.listRegions)
+        {
+            <div class="col-xs-4">
+                @Html.Action("Catalog", "Home", new { id = item.idRegion })
+            </div>
+        }
 
+    </div>
 </div>
-

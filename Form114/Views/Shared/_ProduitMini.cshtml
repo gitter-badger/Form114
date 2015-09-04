@@ -11,17 +11,15 @@
 @section styles{
     <link href="~/Content/BootFlat/bootflat.css" rel="stylesheet" />
 }
-
-<div class="details">
-    <div class="details1">
-        <div class="thumbnail details1">
-
-            @Html.MyCarousel(Model.ListPhotos, Model.IdProduit, "cadre1", "MonImage")
-            <div class="caption text-center">
-                <p>@Model.Adresse...A Completer</p>
-                <input type="hidden" class="idProduit" value="@Model.IdProduit" />
-                @*<p>ID : <div class="idProduit">@Model.IdProduit</div></p>*@
-
+<div class="img1">
+    <div class="details">
+        <div class="details1">
+            <div class="thumbnail details1">
+                @Html.MyCarousel(Model.ListPhotos, Model.IdProduit, "cadre1", "MonImage")
+                <div class="caption text-center">
+                    <p>@Model.Adresse...A Completer</p>
+                    <div class="hidden idProduit">@Model.IdProduit</div>
+                </div>
             </div>
         </div>
     </div>
