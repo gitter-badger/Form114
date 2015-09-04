@@ -174,7 +174,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
+    <Compile Include="Areas\Areas\Controllers\NewsletterController.cs" />
     <Compile Include="Areas\Areas\Controllers\ProduitsController.cs" />
+    <Compile Include="Areas\Areas\Models\NewsletterViewModel.cs" />
     <Compile Include="Areas\Areas\Models\ProduitsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Form114Controller.cs" />
@@ -264,6 +266,9 @@
     <Content Include="Areas\Areas\Views\Produits\Details.cshtml" />
     <Content Include="Areas\Areas\Views\Produits\Edit.cshtml" />
     <Content Include="Areas\Areas\Views\Produits\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Newsletter\Index.cshtml" />
+    <Content Include="Areas\Areas\Views\Newsletter\Desinscrire.cshtml" />
+    <None Include="Properties\PublishProfiles\MachineDaniel.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\DateRangePicker\daterangepicker.js" />
     <Content Include="Scripts\DateRangePicker\daterangepicker.min.js" />

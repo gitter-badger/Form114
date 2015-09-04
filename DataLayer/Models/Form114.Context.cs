@@ -35,6 +35,7 @@ namespace DataLayer.Models
         public virtual DbSet<Commentaires> Commentaires { get; set; }
         public virtual DbSet<Continents> Continents { get; set; }
         public virtual DbSet<Identites> Identites { get; set; }
+        public virtual DbSet<NewsletterInscrits> NewsletterInscrits { get; set; }
         public virtual DbSet<Pays> Pays { get; set; }
         public virtual DbSet<Photos> Photos { get; set; }
         public virtual DbSet<Prix> Prix { get; set; }

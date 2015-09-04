@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<fieldset>
+    <legend>Création d'une newsletter</legend>
+    @using (Html.BeginForm("Envoi", "Newsletter"))
+    {
+        <fieldset>
+            <legend>Message</legend>
+            <input type="text" name="Sujet" placeholder="sujet" />
+            <br />
+            <input type="text" name="Body" placeholder="corps" />
+        </fieldset>
+        <fieldset>
+            <legend>Produit à mettre en avant</legend>
+            <input type="text" name="Lien" placeholder="Lien" />
+        </fieldset>
+        <input type="submit" value="ENVOYER" />
+    }
+</fieldset>

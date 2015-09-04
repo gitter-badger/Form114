@@ -94,6 +94,9 @@
     <Compile Include="Models\Identites.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NewsletterInscrits.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pays.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>

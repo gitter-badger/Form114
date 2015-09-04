@@ -1,5 +1,7 @@
 use Form114
 
+if object_id('NewsletterInscrits') is not null
+	DROP TABLE NewsletterInscrits
 if object_id('Commentaires') is not null
 	drop table Commentaires
 if object_id('Promos') is not null
@@ -100,8 +102,6 @@ CREATE TABLE [dbo].[Identites](
 	[Nom] [varchar](50) NULL,
 	[Prenom] [varchar](30) NULL,
 	[Identifiant] [char](10) NULL,
-	[Password] [char](10) NULL,
-	[Email] [nvarchar](50) NULL,
 	[IdUser][nvarchar](128) NULL,
  CONSTRAINT [Pk_Utilisateur_0] PRIMARY KEY CLUSTERED 
 (
@@ -116,7 +116,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Utilisateurs](
-	[IdUtilisateur] [int] NOT NULL,
+	[IdUtilisateur] [int] IDENTITY(1,1) NOT NULL,
 	[IdAdresse] [int] NOT NULL,
 	[DateInscription] [datetime2](7) NOT NULL,
 	[LastConnection] [datetime2](7) NULL,
