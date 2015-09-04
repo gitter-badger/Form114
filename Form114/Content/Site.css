@@ -4,24 +4,27 @@
 
 html, body {
     height: 100%;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;*/
+    padding-bottom: inherit;
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+/*.body-content {
+    padding-left: -15px;
+    padding-right: -15px;
+}*/
 
 div#footer {
+    position : static;
     background: none;
     overflow: hidden;
     position: absolute;
-    width: 70%;
-    height: 50px;
     bottom: 0;
-    padding: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 20px;
+    margin-bottom : 0;
 }
 
 html > body #footer {
@@ -173,7 +176,9 @@ fieldset {
 #head {
     position: relative;
     width: 100%;
-    min-height: auto;
+    height: 100%;
+    /*min-height: auto;*/
+    margin : 0;
     text-align: center;
     color: #fff;
     background-image: url(header.jpg);
@@ -187,7 +192,7 @@ fieldset {
 #cont {
         position: relative;
         width: 100%;
-        padding: 100px 15px;
+        padding: 0px;
         text-align: center;
     }
 
