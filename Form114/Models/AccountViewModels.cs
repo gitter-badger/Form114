@@ -70,6 +70,36 @@ namespace Form114.Models
         public string Email { get; set; }
 
         [Required]
+        [EmailAddress]
+        [Display(Name = "Nom")]
+        public string Nom { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Prénom")]
+        public string Prenom { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Ligne 1")]
+        public string Ligne1 { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Ligne 2")]
+        public string Ligne2 { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Code Postal")]
+        public string CodePostal { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Ville")]
+        public string Ville { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "La chaîne {0} doit comporter au moins {2} caractères.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
