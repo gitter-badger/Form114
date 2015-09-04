@@ -18,8 +18,6 @@ namespace DataLayer.Models
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Identifiant { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
         public string IdUser { get; set; }
     
         public virtual Administrateurs Administrateurs { get; set; }

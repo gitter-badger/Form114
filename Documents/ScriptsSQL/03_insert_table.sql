@@ -203,6 +203,11 @@ CREATE TABLE Commentaires
 	texte text,
 )
 GO
+CREATE TABLE NewsletterInscrits
+(
+	idInscrit int PRIMARY KEY references Utilisateurs
+)
+GO
 /****** Object:  Table [dbo].[ProduitTracking]    Script Date: 8/27/2015 4:45:31 PM ******/
 SET ANSI_NULLS ON
 GO

@@ -24,7 +24,7 @@ namespace Form114.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace Form114.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -122,7 +122,7 @@ namespace Form114.Controllers
             // Si un utilisateur entre des codes incorrects pendant un certain intervalle, le compte de cet utilisateur 
             // est alors verrouillé pendant une durée spécifiée. 
             // Vous pouvez configurer les paramètres de verrouillage du compte dans IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -154,13 +154,42 @@ namespace Form114.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var identity = new DataLayer.Models.Identites();
-                var utilisateur = new DataLayer.Models.Utilisateurs();
+                var adresse = new DataLayer.Models.Adresses()
+                {
+                    CodePostal = model.CodePostal,
+                    Ligne1 = model.Ligne1,
+                    Ligne2 = model.Ligne2
+                };
+                var identity = new DataLayer.Models.Identites()
+                {
+                    Identifiant = "kempfu",
+                    Nom = model.Nom,
+                    Prenom = model.Prenom
+                };
+                var utilisateur = new DataLayer.Models.Utilisateurs()
+                {
+                    DateInscription = DateTime.Now,
+                    IdAdresse = 0
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    _db.Adresses.Add(adresse);
+                    identity.IdUser = _db.AspNetUsers.Where(a => a.Email == model.Email).Select(a => a.Id).FirstOrDefault();
+                    _db.Identites.Add(identity);
+                    _db.SaveChanges();
+                    utilisateur.IdAdresse = adresse.IdAdresse;
+                    _db.Utilisateurs.Add(utilisateur);
+                    if (model.Newsletter)
+                        _db.NewsletterInscrits.Add(
+                            new DataLayer.Models.NewsletterInscrits()
+                            {
+                                idInscrit = utilisateur.IdUtilisateur
+                            }
+                        );
+                    _db.SaveChanges();
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

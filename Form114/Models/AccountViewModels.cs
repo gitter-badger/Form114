@@ -70,32 +70,25 @@ namespace Form114.Models
         public string Email { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Nom")]
         public string Nom { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Prénom")]
         public string Prenom { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Ligne 1")]
         public string Ligne1 { get; set; }
 
-        [Required]
-        [EmailAddress]
         [Display(Name = "Ligne 2")]
         public string Ligne2 { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Code Postal")]
         public string CodePostal { get; set; }
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Ville")]
         public string Ville { get; set; }
 
@@ -109,6 +102,10 @@ namespace Form114.Models
         [Display(Name = "Confirmer le mot de passe ")]
         [Compare("Password", ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Inscription à la Newsletter")]
+        public bool Newsletter { get; set; }
     }
 
     public class ResetPasswordViewModel

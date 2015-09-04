@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b097a77ec1d4e7abbd59f37cfe48d5d" Name="Diagram1">
+      <Diagram DiagramId="f2c39281263c4d0b90ba670710d8a551" Name="Diagram1">
         <EntityTypeShape EntityType="Form114Model.Acheteurs" Width="1.5" PointX="16.5" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Administrateurs" Width="1.5" PointX="14.25" PointY="23.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Adresses" Width="1.5" PointX="12" PointY="26.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.AspNetRoles" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetUserClaims" Width="1.5" PointX="12" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetUserLogins" Width="1.5" PointX="12" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserClaims" Width="1.5" PointX="12" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserLogins" Width="1.5" PointX="12" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.AspNetUsers" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Commentaires" Width="1.5" PointX="15" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Continents" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Identites" Width="1.5" PointX="12" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Identites" Width="1.5" PointX="12" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.NewsletterInscrits" Width="1.5" PointX="16.5" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Pays" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Form114Model.Photos" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
@@ -32,21 +32,21 @@
         <AssociationConnector Association="Form114Model.fk_utilisateurs_adresse" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Commentai__idAut__5887175A" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Reservati__IdCli__51DA19CB" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idAut__22B5168E" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Reservati__IdCli__1C0818FF" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_Identites_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Commentai__idPar__5792F321" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Commentai__idPro__597B3B93" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idPar__21C0F255" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idPro__23A93AC7" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Regions_Continents_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.fk_utilisateurs_identites" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Newslette__idIns__64ECEE3F" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Newslette__idIns__2F1AED73" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Pays_Regions_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Villes_Pays_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Photos__IdProdui__3EC74557" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Prix__IdProduit__41A3B202" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Produits__IdVill__3BEAD8AC" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Promos__IdProdui__54B68676" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Reservati__IdPro__50E5F592" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Photos__IdProdui__08F5448B" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Prix__IdProduit__0BD1B136" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Produits__IdVill__0618D7E0" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Promos__IdProdui__1EE485AA" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Reservati__IdPro__1B13F4C6" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_ProduitTracking_Produits" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_Vendeurs_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.AspNetUserRoles" ManuallyRouted="false" />
