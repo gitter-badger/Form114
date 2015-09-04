@@ -78,6 +78,17 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Commentaires">
+          <Key>
+            <PropertyRef Name="idComment" />
+          </Key>
+          <Property Name="idComment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idParent" Type="int" />
+          <Property Name="idAuteur" Type="nvarchar" MaxLength="128" />
+          <Property Name="idProduit" Type="int" Nullable="false" />
+          <Property Name="datePoste" Type="datetime" Nullable="false" />
+          <Property Name="texte" Type="text" />
+        </EntityType>
         <EntityType Name="Continents">
           <Key>
             <PropertyRef Name="idContinent" />
@@ -207,7 +218,43 @@
           <Property Name="population" Type="int" Nullable="false" />
           <Property Name="isCapital" Type="smallint" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Photos__IdProdui__7928F116">
+        <Association Name="FK__Commentai__idAut__338A9CD5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Commentaires">
+              <PropertyRef Name="idAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commentai__idPar__3296789C">
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="0..1" />
+          <End Role="Commentaires1" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commentaires">
+              <PropertyRef Name="idComment" />
+            </Principal>
+            <Dependent Role="Commentaires1">
+              <PropertyRef Name="idParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commentai__idPro__347EC10E">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="Commentaires">
+              <PropertyRef Name="idProduit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photos__IdProdui__19CACAD2">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__7C055DC1">
+        <Association Name="FK__Prix__IdProduit__1CA7377D">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -231,7 +278,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__764C846B">
+        <Association Name="FK__Produits__IdVill__16EE5E27">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,7 +290,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Promos__IdProdui__18A19C6F">
+        <Association Name="FK__Promos__IdProdui__2FBA0BF1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Promos" Type="Self.Promos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,7 +302,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdCli__15C52FC4">
+        <Association Name="FK__Reservati__IdCli__2CDD9F46">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +314,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdPro__14D10B8B">
+        <Association Name="FK__Reservati__IdPro__2BE97B0D">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -464,6 +511,7 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commentaires" EntityType="Self.Commentaires" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Identites" EntityType="Self.Identites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
@@ -477,27 +525,39 @@
           <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendeurs" EntityType="Self.Vendeurs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Villes" EntityType="Self.Villes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Photos__IdProdui__7928F116" Association="Self.FK__Photos__IdProdui__7928F116">
+          <AssociationSet Name="FK__Commentai__idAut__338A9CD5" Association="Self.FK__Commentai__idAut__338A9CD5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Commentaires" EntitySet="Commentaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commentai__idPar__3296789C" Association="Self.FK__Commentai__idPar__3296789C">
+            <End Role="Commentaires" EntitySet="Commentaires" />
+            <End Role="Commentaires1" EntitySet="Commentaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commentai__idPro__347EC10E" Association="Self.FK__Commentai__idPro__347EC10E">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="Commentaires" EntitySet="Commentaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Photos__IdProdui__19CACAD2" Association="Self.FK__Photos__IdProdui__19CACAD2">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__7C055DC1" Association="Self.FK__Prix__IdProduit__7C055DC1">
+          <AssociationSet Name="FK__Prix__IdProduit__1CA7377D" Association="Self.FK__Prix__IdProduit__1CA7377D">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__764C846B" Association="Self.FK__Produits__IdVill__764C846B">
+          <AssociationSet Name="FK__Produits__IdVill__16EE5E27" Association="Self.FK__Produits__IdVill__16EE5E27">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
-          <AssociationSet Name="FK__Promos__IdProdui__18A19C6F" Association="Self.FK__Promos__IdProdui__18A19C6F">
+          <AssociationSet Name="FK__Promos__IdProdui__2FBA0BF1" Association="Self.FK__Promos__IdProdui__2FBA0BF1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Promos" EntitySet="Promos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdCli__15C52FC4" Association="Self.FK__Reservati__IdCli__15C52FC4">
+          <AssociationSet Name="FK__Reservati__IdCli__2CDD9F46" Association="Self.FK__Reservati__IdCli__2CDD9F46">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdPro__14D10B8B" Association="Self.FK__Reservati__IdPro__14D10B8B">
+          <AssociationSet Name="FK__Reservati__IdPro__2BE97B0D" Association="Self.FK__Reservati__IdPro__2BE97B0D">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
@@ -635,9 +695,25 @@
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdCli__15C52FC4" FromRole="AspNetUsers" ToRole="Reservations" />
+          <NavigationProperty Name="Commentaires" Relationship="Self.FK__Commentai__idAut__338A9CD5" FromRole="AspNetUsers" ToRole="Commentaires" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdCli__2CDD9F46" FromRole="AspNetUsers" ToRole="Reservations" />
           <NavigationProperty Name="Identites" Relationship="Self.Fk_Identites_AspNetUsers" FromRole="AspNetUsers" ToRole="Identites" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Commentaires">
+          <Key>
+            <PropertyRef Name="idComment" />
+          </Key>
+          <Property Name="idComment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idParent" Type="Int32" />
+          <Property Name="idAuteur" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="idProduit" Type="Int32" Nullable="false" />
+          <Property Name="datePoste" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="texte" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Commentai__idAut__338A9CD5" FromRole="Commentaires" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Commentaires1" Relationship="Self.FK__Commentai__idPar__3296789C" FromRole="Commentaires" ToRole="Commentaires1" />
+          <NavigationProperty Name="Commentaires2" Relationship="Self.FK__Commentai__idPar__3296789C" FromRole="Commentaires1" ToRole="Commentaires" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Commentai__idPro__347EC10E" FromRole="Commentaires" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Continents">
           <Key>
@@ -689,7 +765,7 @@
           <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdProduit" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__7928F116" FromRole="Photos" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Photos__IdProdui__19CACAD2" FromRole="Photos" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Prix">
           <Key>
@@ -700,7 +776,7 @@
           <Property Name="DateDebut" Type="DateTime" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Precision="0" />
           <Property Name="Montant" Type="Int32" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__7C055DC1" FromRole="Prix" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Prix__IdProduit__1CA7377D" FromRole="Prix" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Produits">
           <Key>
@@ -711,11 +787,12 @@
           <Property Name="NbPlaces" Type="Int32" />
           <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__7928F116" FromRole="Produits" ToRole="Photos" />
-          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__7C055DC1" FromRole="Produits" ToRole="Prix" />
-          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__764C846B" FromRole="Produits" ToRole="Villes" />
-          <NavigationProperty Name="Promos" Relationship="Self.FK__Promos__IdProdui__18A19C6F" FromRole="Produits" ToRole="Promos" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdPro__14D10B8B" FromRole="Produits" ToRole="Reservations" />
+          <NavigationProperty Name="Commentaires" Relationship="Self.FK__Commentai__idPro__347EC10E" FromRole="Produits" ToRole="Commentaires" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK__Photos__IdProdui__19CACAD2" FromRole="Produits" ToRole="Photos" />
+          <NavigationProperty Name="Prix" Relationship="Self.FK__Prix__IdProduit__1CA7377D" FromRole="Produits" ToRole="Prix" />
+          <NavigationProperty Name="Villes" Relationship="Self.FK__Produits__IdVill__16EE5E27" FromRole="Produits" ToRole="Villes" />
+          <NavigationProperty Name="Promos" Relationship="Self.FK__Promos__IdProdui__2FBA0BF1" FromRole="Produits" ToRole="Promos" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__IdPro__2BE97B0D" FromRole="Produits" ToRole="Reservations" />
           <NavigationProperty Name="ProduitTracking" Relationship="Self.Fk_ProduitTracking_Produits" FromRole="Produits" ToRole="ProduitTracking" />
         </EntityType>
         <EntityType Name="ProduitTracking">
@@ -736,7 +813,7 @@
           <Property Name="Promo" Type="Int32" Nullable="false" />
           <Property Name="DateDeb" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Promos__IdProdui__18A19C6F" FromRole="Promos" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Promos__IdProdui__2FBA0BF1" FromRole="Promos" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Regions">
           <Key>
@@ -759,8 +836,8 @@
           <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="NbPersonnes" Type="Int32" Nullable="false" />
           <Property Name="Prix" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Reservati__IdCli__15C52FC4" FromRole="Reservations" ToRole="AspNetUsers" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Reservati__IdPro__14D10B8B" FromRole="Reservations" ToRole="Produits" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Reservati__IdCli__2CDD9F46" FromRole="Reservations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Reservati__IdPro__2BE97B0D" FromRole="Reservations" ToRole="Produits" />
         </EntityType>
         <EntityType Name="Utilisateurs">
           <Key>
@@ -793,7 +870,7 @@
           <Property Name="population" Type="Int32" Nullable="false" />
           <Property Name="isCapital" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Pays" Relationship="Self.Villes_Pays_fk" FromRole="Villes" ToRole="Pays" />
-          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__764C846B" FromRole="Villes" ToRole="Produits" />
+          <NavigationProperty Name="Produits" Relationship="Self.FK__Produits__IdVill__16EE5E27" FromRole="Villes" ToRole="Produits" />
         </EntityType>
         <Association Name="Fk_Acheteurs_Utilisateurs">
           <End Role="Utilisateurs" Type="Self.Utilisateurs" Multiplicity="1" />
@@ -859,7 +936,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdCli__15C52FC4">
+        <Association Name="FK__Commentai__idAut__338A9CD5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Commentaires">
+              <PropertyRef Name="idAuteur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__IdCli__2CDD9F46">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -880,6 +969,30 @@
             </Principal>
             <Dependent Role="Identites">
               <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commentai__idPar__3296789C">
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="0..1" />
+          <End Role="Commentaires1" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commentaires">
+              <PropertyRef Name="idComment" />
+            </Principal>
+            <Dependent Role="Commentaires1">
+              <PropertyRef Name="idParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Commentai__idPro__347EC10E">
+          <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
+          <End Role="Commentaires" Type="Self.Commentaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produits">
+              <PropertyRef Name="IdProduit" />
+            </Principal>
+            <Dependent Role="Commentaires">
+              <PropertyRef Name="idProduit" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -931,7 +1044,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photos__IdProdui__7928F116">
+        <Association Name="FK__Photos__IdProdui__19CACAD2">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -943,7 +1056,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Prix__IdProduit__7C055DC1">
+        <Association Name="FK__Prix__IdProduit__1CA7377D">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Prix" Type="Self.Prix" Multiplicity="*" />
           <ReferentialConstraint>
@@ -955,7 +1068,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Produits__IdVill__764C846B">
+        <Association Name="FK__Produits__IdVill__16EE5E27">
           <End Role="Villes" Type="Self.Villes" Multiplicity="1" />
           <End Role="Produits" Type="Self.Produits" Multiplicity="*" />
           <ReferentialConstraint>
@@ -967,7 +1080,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Promos__IdProdui__18A19C6F">
+        <Association Name="FK__Promos__IdProdui__2FBA0BF1">
           <End Role="Produits" Type="Self.Produits" Multiplicity="0..1" />
           <End Role="Promos" Type="Self.Promos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -979,7 +1092,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reservati__IdPro__14D10B8B">
+        <Association Name="FK__Reservati__IdPro__2BE97B0D">
           <End Role="Produits" Type="Self.Produits" Multiplicity="1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1027,6 +1140,7 @@
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Commentaires" EntityType="Self.Commentaires" />
           <EntitySet Name="Continents" EntityType="Self.Continents" />
           <EntitySet Name="Identites" EntityType="Self.Identites" />
           <EntitySet Name="Pays" EntityType="Self.Pays" />
@@ -1060,13 +1174,25 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdCli__15C52FC4" Association="Self.FK__Reservati__IdCli__15C52FC4">
+          <AssociationSet Name="FK__Commentai__idAut__338A9CD5" Association="Self.FK__Commentai__idAut__338A9CD5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Commentaires" EntitySet="Commentaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__IdCli__2CDD9F46" Association="Self.FK__Reservati__IdCli__2CDD9F46">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
           <AssociationSet Name="Fk_Identites_AspNetUsers" Association="Self.Fk_Identites_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Identites" EntitySet="Identites" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commentai__idPar__3296789C" Association="Self.FK__Commentai__idPar__3296789C">
+            <End Role="Commentaires" EntitySet="Commentaires" />
+            <End Role="Commentaires1" EntitySet="Commentaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Commentai__idPro__347EC10E" Association="Self.FK__Commentai__idPro__347EC10E">
+            <End Role="Produits" EntitySet="Produits" />
+            <End Role="Commentaires" EntitySet="Commentaires" />
           </AssociationSet>
           <AssociationSet Name="Regions_Continents_fk" Association="Self.Regions_Continents_fk">
             <End Role="Continents" EntitySet="Continents" />
@@ -1084,23 +1210,23 @@
             <End Role="Pays" EntitySet="Pays" />
             <End Role="Villes" EntitySet="Villes" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photos__IdProdui__7928F116" Association="Self.FK__Photos__IdProdui__7928F116">
+          <AssociationSet Name="FK__Photos__IdProdui__19CACAD2" Association="Self.FK__Photos__IdProdui__19CACAD2">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Prix__IdProduit__7C055DC1" Association="Self.FK__Prix__IdProduit__7C055DC1">
+          <AssociationSet Name="FK__Prix__IdProduit__1CA7377D" Association="Self.FK__Prix__IdProduit__1CA7377D">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Prix" EntitySet="Prix" />
           </AssociationSet>
-          <AssociationSet Name="FK__Produits__IdVill__764C846B" Association="Self.FK__Produits__IdVill__764C846B">
+          <AssociationSet Name="FK__Produits__IdVill__16EE5E27" Association="Self.FK__Produits__IdVill__16EE5E27">
             <End Role="Villes" EntitySet="Villes" />
             <End Role="Produits" EntitySet="Produits" />
           </AssociationSet>
-          <AssociationSet Name="FK__Promos__IdProdui__18A19C6F" Association="Self.FK__Promos__IdProdui__18A19C6F">
+          <AssociationSet Name="FK__Promos__IdProdui__2FBA0BF1" Association="Self.FK__Promos__IdProdui__2FBA0BF1">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Promos" EntitySet="Promos" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reservati__IdPro__14D10B8B" Association="Self.FK__Reservati__IdPro__14D10B8B">
+          <AssociationSet Name="FK__Reservati__IdPro__2BE97B0D" Association="Self.FK__Reservati__IdPro__2BE97B0D">
             <End Role="Produits" EntitySet="Produits" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
@@ -1190,6 +1316,18 @@
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commentaires">
+            <EntityTypeMapping TypeName="Form114Model.Commentaires">
+              <MappingFragment StoreEntitySet="Commentaires">
+                <ScalarProperty Name="idComment" ColumnName="idComment" />
+                <ScalarProperty Name="idParent" ColumnName="idParent" />
+                <ScalarProperty Name="idAuteur" ColumnName="idAuteur" />
+                <ScalarProperty Name="idProduit" ColumnName="idProduit" />
+                <ScalarProperty Name="datePoste" ColumnName="datePoste" />
+                <ScalarProperty Name="texte" ColumnName="texte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

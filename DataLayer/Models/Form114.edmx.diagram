@@ -4,43 +4,47 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2376fa38029145608e395d3500400384" Name="Diagram1">
-        <EntityTypeShape EntityType="Form114Model.Acheteurs" Width="1.5" PointX="19.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Administrateurs" Width="1.5" PointX="17.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Adresses" Width="1.5" PointX="15" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetRoles" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetUserClaims" Width="1.5" PointX="15" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetUserLogins" Width="1.5" PointX="15" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.AspNetUsers" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Continents" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Identites" Width="1.5" PointX="15" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Pays" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Photos" Width="1.5" PointX="12" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Prix" Width="1.5" PointX="12" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Produits" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.ProduitTracking" Width="1.5" PointX="12" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Promos" Width="1.5" PointX="12" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Regions" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Reservations" Width="1.5" PointX="15" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Utilisateurs" Width="1.5" PointX="17.25" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Vendeurs" Width="1.5" PointX="19.5" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Form114Model.Villes" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+      <Diagram DiagramId="d6f035d2d8f5449294f2696f350f0e35" Name="Diagram1">
+        <EntityTypeShape EntityType="Form114Model.Acheteurs" Width="1.5" PointX="16.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Administrateurs" Width="1.5" PointX="14.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Adresses" Width="1.5" PointX="12" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetRoles" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserClaims" Width="1.5" PointX="12" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUserLogins" Width="1.5" PointX="12" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.AspNetUsers" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Commentaires" Width="1.5" PointX="15" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Continents" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Identites" Width="1.5" PointX="12" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Pays" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Photos" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Prix" Width="1.5" PointX="12" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Produits" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.ProduitTracking" Width="1.5" PointX="12" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Promos" Width="1.5" PointX="12" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Regions" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Reservations" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Utilisateurs" Width="1.5" PointX="14.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Vendeurs" Width="1.5" PointX="16.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Form114Model.Villes" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <AssociationConnector Association="Form114Model.Fk_Acheteurs_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.fk_administrateurs_identites" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.fk_utilisateurs_adresse" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Reservati__IdCli__15C52FC4" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idAut__338A9CD5" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Reservati__IdCli__2CDD9F46" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_Identites_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idPar__3296789C" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Commentai__idPro__347EC10E" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Regions_Continents_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.fk_utilisateurs_identites" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Pays_Regions_fk" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Villes_Pays_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Photos__IdProdui__7928F116" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Prix__IdProduit__7C055DC1" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Produits__IdVill__764C846B" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Promos__IdProdui__18A19C6F" ManuallyRouted="false" />
-        <AssociationConnector Association="Form114Model.FK__Reservati__IdPro__14D10B8B" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Photos__IdProdui__19CACAD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Prix__IdProduit__1CA7377D" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Produits__IdVill__16EE5E27" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Promos__IdProdui__2FBA0BF1" ManuallyRouted="false" />
+        <AssociationConnector Association="Form114Model.FK__Reservati__IdPro__2BE97B0D" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_ProduitTracking_Produits" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.Fk_Vendeurs_Utilisateurs" ManuallyRouted="false" />
         <AssociationConnector Association="Form114Model.AspNetUserRoles" ManuallyRouted="false" />
