@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Form114.Infrastructure;
 using Form114.Infrastructure.SearchProducts;
 using Form114.Infrastructure.SearchProducts.Base;
 using Form114.Infrastructure.SearchProducts.Options;
@@ -11,15 +12,20 @@ using System.Web.Mvc;
 
 namespace Form114.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : Form114Controller
     {
-        private readonly Form114Entities _db = new Form114Entities();
+        public SearchController()
+        {
+            BCI.Add(new BreadCrumbItem("Search", "Index", "Search"));
+        }
+
         // GET: Search
         public ActionResult Index()
         {
             ViewBag.listeVille = _db.Villes.ToList();
             var svm = new SearchViewModel();
             svm.Ville = new int[10];
+            
             return View(svm);
         }
 
@@ -33,10 +39,13 @@ namespace Form114.Controllers
             sb = new SearchOptionNombrePlaces(sb, svm.nbPlaces);
             sb = new SearchOptionPrixMini(sb, svm.PrixMini);
             sb = new SearchOptionDateDebut(sb, svm.DateDebut);
-            sb = new SearchOptionRegion(sb, svm.Region);
+            //sb = new SearchOptionRegion(sb, svm.Region);
             sb = new SearchOptionVille(sb, svm.Ville);
             var result = sb.GetResult().ToList();
             ViewBag.PrixMini = svm.PrixMini;
+            //int regionId = _db.Villes.Where(v => v.idVille == svm.Ville[0]).Select(v => v.Pays.idRegion).FirstOrDefault();
+            //string paysId = _db.Pays.Where(p => p.Regions.idRegion == regionId).Select(p => p.CodeIso3).FirstOrDefault();
+            //BCI.Add(new BreadCrumbItem("@regionId", "Result", "Search"));
             return View(result);
         }
 
@@ -44,8 +53,10 @@ namespace Form114.Controllers
         public ActionResult ResultRegion(int id)
         {
             SearchBase sb = new Search();
+            string NomRegion = _db.Regions.Find(id).name;
             sb = new SearchOptionRegion(sb, id);
             var result = sb.GetResult().ToList();
+            BCI.Add(new BreadCrumbItem( NomRegion, "Result", "Search"));
             return View("Result",result);
         }
 

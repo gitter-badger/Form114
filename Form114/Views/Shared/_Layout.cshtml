@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@using Form114.Infrastructure
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,9 +38,13 @@
     <div class="container body-content">
         <div class="row">
             <div class="col-lg-2">
-            </div>
+            </div>  
             <div class="col-lg-8">
-
+                @foreach (BreadCrumbItem BCI in (List<BreadCrumbItem>)ViewBag.BreadCrumb)
+                {
+                    @Html.ActionLink(BCI.text, BCI.routeAction, BCI.routeController)
+                    <text> >> </text>
+                }
 
                 @RenderBody()
             </div>

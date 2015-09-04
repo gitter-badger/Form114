@@ -11,7 +11,7 @@ using Form114.Models;
 namespace Form114.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : Form114Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

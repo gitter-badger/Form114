@@ -11,7 +11,6 @@ namespace Form114.Controllers
 {
     public class ReservationController : Form114Controller
     {
-        private readonly Form114Entities _db = new Form114Entities();
         // GET: Reservation
         public ActionResult Index()
         {

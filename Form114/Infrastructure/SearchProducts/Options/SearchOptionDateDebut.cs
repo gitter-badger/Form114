@@ -11,9 +11,10 @@ namespace Form114.Infrastructure.SearchProducts.Options
     {
         private readonly DateTime _Debut;
 
-        
 
-        public SearchOptionDateDebut(SearchBase sb, DateTime Debut):base(sb)
+
+        public SearchOptionDateDebut(SearchBase sb, DateTime Debut)
+            : base(sb)
         {
             _Debut = Debut;
         }
@@ -22,34 +23,32 @@ namespace Form114.Infrastructure.SearchProducts.Options
         {
             // TODO : refaire après la mise a jour base de données sur la table Produits, prix ne pas être null.
             List<Produits> listeDeProduitsDateDebut = new List<Produits>();
-
-            var db = new Form114Entities();
-            var lDate = db.Prix.Where(p => p.DateDebut >= _Debut).ToList();
+            var _db = new Form114Entities();
+            var lDate = _db.Prix.Where(p => p.DateDebut >= _Debut).ToList();
             foreach (var item in lDate)
             {
                 var list = SearchBase.GetResult().Where(p => p.IdProduit == item.IdProduit);
-                
-                    if (list.Count() > 1)
+
+                if (list.Count() > 1)
+                {
+                    foreach (var item1 in list)
                     {
-                        foreach (var item1 in list)
-                        {
-                            //if(!(listeDeProduitsDateDebut.Contains(item1)))
-                                listeDeProduitsDateDebut.Add(item1);
-                        }
-                    }
-                    else
-                    {
-                        var list1 = list.FirstOrDefault();
-                        if (list1 != null /*&& !(listeDeProduitsDateDebut.Contains(list1))*/)
-                        {
-                            listeDeProduitsDateDebut.Add(list1);
-                        }
+                        //if(!(listeDeProduitsDateDebut.Contains(item1)))
+                        listeDeProduitsDateDebut.Add(item1);
                     }
                 }
-            
-            
+                else
+                {
+                    var list1 = list.FirstOrDefault();
+                    if (list1 != null /*&& !(listeDeProduitsDateDebut.Contains(list1))*/)
+                    {
+                        listeDeProduitsDateDebut.Add(list1);
+                    }
+                }
+            }
 
-            return _Debut != null ? listeDeProduitsDateDebut : SearchBase.GetResult().OrderBy(p => p.IdProduit).ToList();
+            //return _Debut != null ? listeDeProduitsDateDebut : SearchBase.GetResult().OrderBy(p => p.IdProduit).ToList();
+            return listeDeProduitsDateDebut;
         }
     }
 }

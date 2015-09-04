@@ -11,18 +11,18 @@ namespace Form114.Infrastructure.SearchProducts
     {
         public Search()
         {
-            SearchAnnonces = new Form114Entities().Produits.ToList();
+            SearchRooms = new Form114Entities().Produits.ToList();
         }
 
 
         public Search(IEnumerable<Produits> result)
         {
-            SearchAnnonces = result;
+            SearchRooms = result;
         }
 
         public override IEnumerable<Produits> GetResult()
         {
-            return SearchAnnonces;
+            return SearchRooms;
         }
     }
 }

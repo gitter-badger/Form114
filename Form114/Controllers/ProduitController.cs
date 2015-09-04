@@ -6,12 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Form114.Infrastructure.Filters;
+using Form114.Infrastructure;
 
 namespace Form114.Controllers
 {
-    public class ProduitController : Controller
+    public class ProduitController : Form114Controller
     {
-        private Form114Entities _db = new Form114Entities();
+        // private Form114Entities _db = new Form114Entities();
+
+        //public ProduitController()
+        //{
+        //    BCI.Add(new BreadCrumbItem("Produits", "Index", "Produit"));
+        //}
+
         // GET: Produit
         public ActionResult Index()
         {
@@ -53,6 +60,12 @@ namespace Form114.Controllers
                 ListPhotos = listePhotos,
                 Prix = (prix != null ? (int)prix : 0)
             };
+            var ville = _db.Produits.Find(id).Villes;            
+            var pays = _db.Villes.Find(ville.idVille).Pays;     
+            string nomRegion = _db.Pays.Find(pays.CodeIso3).Regions.name;
+            BCI.Add(new BreadCrumbItem(nomRegion, "Details", "Produit"));
+            BCI.Add(new BreadCrumbItem(pays.Name, "Details", "Produit"));
+            BCI.Add(new BreadCrumbItem(ville.name, "Details", "Produit"));
             return View(pr);
         }
 

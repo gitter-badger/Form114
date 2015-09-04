@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Form114.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Web.Mvc;
 
 namespace Form114.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Form114Controller
     {
-        private readonly Form114Entities _db = new Form114Entities();
         //TODO Changer la liste à afficher en fonction du nombre de vues
         public ActionResult Index()
         {
@@ -46,6 +46,7 @@ namespace Form114.Controllers
 
         [ChildActionOnly]
         public PartialViewResult Catalog(int id) {
+            var item = _db.Produits.Find(id).Villes.Pays.CodeIso2;
             return PartialView("_Catalog", _db.Regions.Find(id));
         }
     }

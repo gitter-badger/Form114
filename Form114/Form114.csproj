@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BreadCrumbItem.cs" />
     <Compile Include="Infrastructure\EditorForHelper.cs" />
     <Compile Include="Infrastructure\Filters\ProduitTrackerFilterAttribute.cs" />
     <Compile Include="Infrastructure\FormFieldset.cs" />

@@ -13,7 +13,7 @@ using Form114.Models;
 namespace Form114.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : Form114Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
