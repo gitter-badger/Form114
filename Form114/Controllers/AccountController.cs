@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Form114.Models;
+using DataLayer.Models;
 
 namespace Form114.Controllers
 {
@@ -17,6 +18,7 @@ namespace Form114.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly Form114Entities _db = new Form114Entities();
 
         public AccountController()
         {
@@ -152,6 +154,8 @@ namespace Form114.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var identity = new DataLayer.Models.Identites();
+                var utilisateur = new DataLayer.Models.Utilisateurs();
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
