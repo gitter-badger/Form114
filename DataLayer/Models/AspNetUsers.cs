@@ -18,6 +18,7 @@ namespace DataLayer.Models
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
+            this.Commentaires = new HashSet<Commentaires>();
             this.Reservations = new HashSet<Reservations>();
             this.Identites = new HashSet<Identites>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
@@ -38,6 +39,7 @@ namespace DataLayer.Models
     
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual ICollection<Commentaires> Commentaires { get; set; }
         public virtual ICollection<Reservations> Reservations { get; set; }
         public virtual ICollection<Identites> Identites { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }

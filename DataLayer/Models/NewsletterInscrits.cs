@@ -12,17 +12,10 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Utilisateurs
+    public partial class NewsletterInscrits
     {
-        public int IdUtilisateur { get; set; }
-        public int IdAdresse { get; set; }
-        public System.DateTime DateInscription { get; set; }
-        public Nullable<System.DateTime> LastConnection { get; set; }
+        public int idInscrit { get; set; }
     
-        public virtual Acheteurs Acheteurs { get; set; }
-        public virtual Adresses Adresses { get; set; }
-        public virtual Identites Identites { get; set; }
-        public virtual NewsletterInscrits NewsletterInscrits { get; set; }
-        public virtual Vendeurs Vendeurs { get; set; }
+        public virtual Utilisateurs Utilisateurs { get; set; }
     }
 }

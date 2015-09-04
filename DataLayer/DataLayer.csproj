@@ -70,6 +70,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Commentaires.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Continents.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
@@ -89,6 +92,9 @@
       <DependentUpon>Form114.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Identites.cs">
+      <DependentUpon>Form114.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsletterInscrits.cs">
       <DependentUpon>Form114.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pays.cs">

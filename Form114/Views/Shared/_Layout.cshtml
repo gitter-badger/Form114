@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" media="all" href="https://a1.muscache.com/airbnb/static/packages/common_o2.1-858f47868a8d0e12dfa7eb60fa84fb17.css" />
     <link type="text/css" rel="stylesheet" media="screen" href="https://a2.muscache.com/airbnb/static/p1/main-5cb7d688449bd133cdab91df9172776f.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/creative.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+
     <title>@ViewBag.Title - Mon application ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 
 </head>
-<body>
+<body class="navbar" style="height:100%; width:100%;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -45,14 +52,14 @@
                     @Html.ActionLink(BCI.text, BCI.routeAction, BCI.routeController)
                     <text> >> </text>
                 }
+    <div class="navbar" style="height:100%;width:100%;">
 
-                @RenderBody()
-            </div>
-        </div>
+        @RenderBody()
+
         <hr />
         <div id="footer">
-            <p class ="text-muted">@Html.Action("Comptage", "Home")</p>
-</div>
+            @Html.Action("Comptage", "Home")
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
